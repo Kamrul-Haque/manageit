@@ -42,7 +42,7 @@ class Product extends Model implements Searchable
     {
         if ($value)
         {
-            return asset($value);
+            return asset('storage/'.$value);
         }
     }
 

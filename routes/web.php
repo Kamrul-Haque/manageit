@@ -37,6 +37,7 @@ Route::group(['middleware' => 'auth:web,admin'], function (){
         return view('my-account');
     })->name('my.account');
     Route::post('/search','SearchController@search')->name('search');
+    Route::resource('category','CategoryController')->except('destroy','show');
     Route::resource('products', 'ProductController')->except('destroy');
     Route::resource('godowns', 'GodownController')->except('destroy');
     Route::resource('entries', 'EntryController')->except('destroy');
@@ -77,14 +78,17 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => 'auth:admin
 
     Route::resource('users','UserController');
     Route::post('/users/delete', 'UserController@destroyAll')->name('users.deleteAll');
-    Route::delete('/entries/{entry}','EntryController@destroy')->name('entries.destroy');
-    Route::post('/entries/delete', 'EntryController@destroyAll')->name('entries.deleteAll');
-    Route::post('/entries/{entry}/restore','EntryController@restore')->name('entries.restore');
-    Route::delete('/entries/{entry}/force-delete','EntryController@foreDelete')->name('entries.force.delete');
+    Route::delete('/category/{category}','CategoryController@destroy')->name('category.destroy');
+    Route::post('/category/{category}/restore','CategoryController@restore')->name('category.restore');
+    Route::delete('/category/{category}/force-delete','CategoryController@forceDelete')->name('category.force.delete');
     Route::delete('/products/{product}','ProductController@destroy')->name('products.destroy');
     Route::post('/products/delete','ProductController@destroyAll')->name('products.deleteAll');
     Route::post('/products/{product}/restore','ProductController@restore')->name('products.restore');
     Route::delete('/products/{product}/force-delete','ProductController@forceDelete')->name('products.force.delete');
+    Route::delete('/entries/{entry}','EntryController@destroy')->name('entries.destroy');
+    Route::post('/entries/delete', 'EntryController@destroyAll')->name('entries.deleteAll');
+    Route::post('/entries/{entry}/restore','EntryController@restore')->name('entries.restore');
+    Route::delete('/entries/{entry}/force-delete','EntryController@foreDelete')->name('entries.force.delete');
     Route::delete('/godowns/{godown}', 'GodownController@destroy')->name('godowns.destroy');
     Route::post('/godowns/{godown}/restore', 'GodownController@restore')->name('godowns.restore');
     Route::delete('/godowns/{godown}/force-delete', 'GodownController@forceDelete')->name('godowns.force.delete');

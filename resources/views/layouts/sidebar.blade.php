@@ -83,6 +83,12 @@
                         </li>
                         @endif
                         <li class="nav-item">
+                            <a class="nav-link {{ Request::is('category*') ? 'active' : '' }}" href="{{ route('category.index') }}">
+                                <span data-feather="list"></span>
+                                Categories
+                            </a>
+                        </li>
+                        <li class="nav-item">
                             <a class="nav-link {{ Request::is('products*') ? 'active' : '' }}" href="{{ route('products.index') }}">
                                 <span data-feather="package"></span>
                                 Products
