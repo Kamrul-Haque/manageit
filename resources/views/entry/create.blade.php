@@ -35,15 +35,27 @@
         <form action="{{route('entries.store')}}" method="POST">
             @csrf
             <div class="form-group">
-                <label for="name">Product Name</label>
-                <select id="name" name="name" class="form-control @error('name') is-invalid @enderror" required>
-                    <option value="" selected disabled>Please Select...</option>
-                    @foreach ($products as $product)
-                        <option value="{{$product->id}}" @if(old('name')==$product->id) selected @endif>{{$product->name}}</option>
+                <label for="category">Category</label>
+                <select name="category" id="category" class="form-control @error('category') is-invalid @enderror" required>
+                    <option value="" disabled selected>Please Select...</option>
+                    @foreach($categories as $category)
+                        <option value="{{ $category->id }}" @if(old('category')==$category->id) selected @endif>{{ $category->name }}</option>
                     @endforeach
                 </select>
 
-                @error('name')
+                @error('category')
+                <span class="invalid-feedback" role="alert">
+                    <strong>{{ $message }}</strong>
+                </span>
+                @enderror
+            </div>
+            <div class="form-group">
+                <label for="product">Product Name</label>
+                <select id="product" name="product" class="form-control @error('product') is-invalid @enderror" required>
+                    <option value="" selected disabled>Please Select...</option>
+                </select>
+
+                @error('product')
                 <span class="invalid-feedback" role="alert">
                     <strong>{{ $message }}</strong>
                 </span>
@@ -253,6 +265,24 @@
 
             $('#due').val(parseFloat(due));
             $('#dueLabel').html(parseFloat(due));
+        });
+        $(document).on('change', '#category', function () {
+            var category = $(this).val();
+            $('#product').empty();
+            $('#product').append('<option selected disabled>Please Select...</option>');
+            if (category) {
+                var _token = $('input[name="_token"]').val();
+                $.ajax({
+                    url: "{{route('get.products')}}",
+                    method: "POST",
+                    data: {category: category, _token: _token},
+                    success: function (response) {
+                        $.each(response, function (index, product) {
+                            $('#product').append('<option value="' + product.id + '">' + product.name + '</option>');
+                        });
+                    }
+                });
+            }
         });
     </script>
 @endsection

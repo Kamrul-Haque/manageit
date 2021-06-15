@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\CashRegister;
+use App\Category;
 use App\Client;
 use App\ClientPayment;
 use App\Invoice;
@@ -33,9 +34,9 @@ class InvoiceController extends Controller
     public function create()
     {
         $clients = Client::orderBy('name')->get();
-        $products = Product::orderBy('name')->get();
+        $categories = Category::orderBy('name')->get();
 
-        return view('invoice.create', compact('products', 'clients'));
+        return view('invoice.create', compact('categories', 'clients'));
     }
 
     public function getGodowns(Request $request)

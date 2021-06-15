@@ -34,7 +34,6 @@
             padding-left: 200px;
         }
     </style>
-    <script>var products = {!! $products !!}</script>
     <script>var inc = "{{asset('/icons/trash-2.svg')}}"</script>
 @endsection
 
@@ -93,21 +92,24 @@
                         <div id="body" class="modal-body font-weight-bold">
                             <div class="form-group row">
                                 <div class="col-sm-2">
+                                    <label class="form-check-label">Category</label>
+                                </div>
+                                <div class="col-sm-2">
                                     <label class="form-check-label">Product Name</label>
                                 </div>
                                 <div class="col-sm-2">
                                     <label class="form-check-label">Gododwn</label>
                                 </div>
-                                <div class="col-sm-2">
+                                <div class="col-sm-1">
                                     <label class="form-check-label">Quantity</label>
                                 </div>
                                 <div class="col-sm-1">
                                     <label class="form-check-label">Unit</label>
                                 </div>
-                                <div class="col-sm-2">
+                                <div class="col-sm-1">
                                     <label class="form-check-label">Unit Price</label>
                                 </div>
-                                <div class="col-sm-2">
+                                <div class="col-sm-1">
                                     <label class="form-check-label">Total Price</label>
                                 </div>
                                 <div class="col-sm-1">
@@ -116,11 +118,16 @@
                             </div>
                             <div id="formRow" class="form-group row">
                                 <div class="col-sm-2">
-                                    <select name="pname[]" class="form-control dynamic" data-dependent="godown" data-linked="unit" required>
-                                        <option selected disabled>Please Select...</option>
-                                        @foreach($products as $product)
-                                            <option value="{{ $product->id }}">{{ $product->name }}</option>
+                                    <select name="category[]" id="category[]" class="form-control category" data-dependent="pname" required>
+                                        <option value="" disabled selected>Please Select...</option>
+                                        @foreach($categories as $category)
+                                            <option value="{{ $category->id }}">{{ $category->name }}</option>
                                         @endforeach
+                                    </select>
+                                </div>
+                                <div class="col-sm-2">
+                                    <select name="pname[]" id="pname" class="form-control dynamic" data-dependent="godown" data-linked="unit" required>
+                                        <option selected disabled>Please Select...</option>
                                     </select>
                                 </div>
                                 <div class="col-sm-2">
@@ -128,7 +135,7 @@
                                         <option selected disabled>Please Select...</option>
                                     </select>
                                 </div>
-                                <div class="col-sm-2">
+                                <div class="col-sm-1">
                                     <input id="quantity" name="quantity[]" class="form-control calculable" data-dependent="price" data-linked="uprice" required>
 
                                     @error('quantity.*')
@@ -141,7 +148,7 @@
                                     <label id="unitLabel" class="form-check-label text-black-50"></label>
                                     <input type="text" id="unit" name="unit[]" data-output="unitLabel" hidden>
                                 </div>
-                                <div class="col-sm-2">
+                                <div class="col-sm-1">
                                     <input id="unitp" name="uprice[]" class="form-control calculable-alt" data-dependent="price" data-linked="quantity" required>
 
                                     @error('uprice.*')
@@ -150,7 +157,7 @@
                                     </span>
                                     @enderror
                                 </div>
-                                <div class="col-sm-2">
+                                <div class="col-sm-1">
                                     <label id="priceLabel" class="form-check-label text-black-50">0</label>
                                     <input type="number" step="any" id="price" name="price[]" data-output="priceLabel" hidden>
                                 </div>
@@ -348,6 +355,11 @@
 
             var element = `<div id="formRow" class="form-group row">
                                 <div class="col-sm-2">
+                                    <select name="category[]" class="form-control category" data-dependent="pname`+count+`" required>
+                                        <option selected disabled>Please Select...</option>
+                                    </select>
+                                </div>
+                                <div class="col-sm-2">
                                     <select name="pname[]" class="form-control dynamic" data-dependent="godown`+count+`" data-linked="unit`+count+`" required>
                                         <option selected disabled>Please Select...</option>
                                     </select>
@@ -364,10 +376,10 @@
                                     <label id="unitLabel`+count+`" class="form-check-label text-black-50"></label>
                                     <input id="unit`+count+`" name="unit[]" data-output="unitLabel`+count+`" hidden>
                                 </div>
-                                <div class="col-sm-2">
+                                <div class="col-sm-1">
                                     <input id="unitp`+count+`" name="uprice[]" class="form-control calculable-alt" data-dependent="price`+count+`" data-linked="quantity`+count+`" required>
                                 </div>
-                                <div class="col-sm-2">
+                                <div class="col-sm-1">
                                     <label id="priceLabel`+count+`" class="form-check-label text-black-50">0</label>
                                     <input type="number" step="any" id="price`+count+`" name="price[]" data-output="priceLabel`+count+`" hidden>
                                 </div>
@@ -421,6 +433,26 @@
                             </div>`;
 
                 $(html).insertAfter(this);
+            }
+        });
+
+        $(document).on('change', '.category', function () {
+            var category = $(this).val();
+            var dependent = $(this).data('dependent');
+            $('#'+dependent).empty();
+            $('#'+dependent).append('<option selected disabled>Please Select...</option>');
+            if (category) {
+                var _token = $('input[name="_token"]').val();
+                $.ajax({
+                    url: "{{route('get.products')}}",
+                    method: "POST",
+                    data: {category: category, _token: _token},
+                    success: function (response) {
+                        $.each(response, function (index, product) {
+                            $('#'+dependent).append('<option value="' + product.id + '">' + product.name + '</option>');
+                        });
+                    }
+                });
             }
         });
 

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\CashRegister;
+use App\Category;
 use App\Entry;
 use App\Godown;
 use App\Product;
@@ -14,40 +15,32 @@ use Auth;
 
 class EntryController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function index()
     {
         $entries = Entry::latest()->paginate(10);
         return view('entry.index', compact('entries'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function create()
     {
-        $products = Product::orderBy('name')->get();
+        $categories = Category::orderBy('name')->get();
         $godowns = Godown::orderBy('name')->get();
         $suppliers = Supplier::orderBy('name')->get();
-        return view('entry.create', compact('products', 'godowns', 'suppliers'));
+        return view('entry.create', compact('categories', 'godowns', 'suppliers'));
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
+    public function getProducts(Request $request)
+    {
+        $category = $request->get('category');
+        $products = Product::where('category_id', $category)->orderBy('name')->get();
+
+        return response()->json($products);
+    }
+
     public function store(Request $request)
     {
         $this->validate($request,[
-            'name' => 'required|',
+            'product' => 'required|',
             'quantity' => 'required|numeric|between:0,99999.99',
             'price' => 'required|numeric|between:0,999999999.99',
             'godown' => 'required',
@@ -62,7 +55,7 @@ class EntryController extends Controller
         ]);
 
         $entry = new Entry;
-        $pid = $request->name;
+        $pid = $request->product;
         $gid = $request->godown;
         $quantity = $request->quantity;
         $price = $request->price;
@@ -77,7 +70,7 @@ class EntryController extends Controller
         $entry->supplier_id = $request->supplier;
         $entry->paid = $request->amount;
         $entry->due = $request->due;
-        $entry->entry_by = Auth::user()->name;
+        $entry->entry_by = Auth::user()->product;
 
         if ($request->amount > 0)
             $this->savePayment($request);

@@ -41,6 +41,7 @@ Route::group(['middleware' => 'auth:web,admin'], function (){
     Route::resource('products', 'ProductController')->except('destroy');
     Route::resource('godowns', 'GodownController')->except('destroy');
     Route::resource('entries', 'EntryController')->except('destroy');
+    Route::post('get-products', 'EntryController@getProducts')->name('get.products');
     Route::resource('clients', 'ClientController')->except('destroy');
     Route::resource('client-payment', 'ClientPaymentController')->except('destroy');
     Route::resource('invoices', 'InvoiceController')->except('destroy');
