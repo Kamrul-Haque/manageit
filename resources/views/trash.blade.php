@@ -310,12 +310,12 @@
             <div class="card">
                 <div class="card-header" id="bank-deposit">
                     <h4 class="mb-0">
-                        <button class="dropdown-button btn-block text-left" type="button" data-toggle="collapse" data-target="#collapse-bank-deposit" aria-expanded="true" aria-controls="collapseOne">
+                        <button class="dropdown-button btn-block text-left" type="button" data-toggle="collapse" data-target="#collapse-bank-withdraw" aria-expanded="true" aria-controls="collapseOne">
                             Bank Withdraws
                         </button>
                     </h4>
                 </div>
-                <div id="collapse-bank-deposit" class="collapse @if($bankWithdraws->count()) show @endif" aria-labelledby="bank-deposit" data-parent="#accordionBankWithdraw">
+                <div id="collapse-bank-withdraw" class="collapse @if($bankWithdraws->count()) show @endif" aria-labelledby="bank-deposit" data-parent="#accordionBankWithdraw">
                     <div class="card-body">
                         @if($bankWithdraws->count())
                             @component('layouts.components.bank-withdraw-table', ['bankWithdraws'=>$bankWithdraws])
@@ -329,5 +329,29 @@
             </div>
         </div>
         <span class="d-flex justify-content-center mt-2">{{ $bankWithdraws->links() }}</span>
+        <br>
+        <div class="accordion" id="accordionCategory">
+            <div class="card">
+                <div class="card-header" id="bank-deposit">
+                    <h4 class="mb-0">
+                        <button class="dropdown-button btn-block text-left" type="button" data-toggle="collapse" data-target="#collapse-category" aria-expanded="true" aria-controls="collapseOne">
+                            Categories
+                        </button>
+                    </h4>
+                </div>
+                <div id="collapse-category" class="collapse @if($categories->count()) show @endif" aria-labelledby="category" data-parent="#accordionCategory">
+                    <div class="card-body">
+                        @if($categories->count())
+                            @component('layouts.components.category-table', ['categories'=>$categories])
+                                trash
+                            @endcomponent
+                        @else
+                            <h4 class="text-center"><strong>No Records Found</strong></h4>
+                        @endif
+                    </div>
+                </div>
+            </div>
+        </div>
+        <span class="d-flex justify-content-center mt-2">{{ $categories->links() }}</span>
     </div>
 @endsection

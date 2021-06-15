@@ -10,40 +10,20 @@
 @endsection
 
 @section('content')
-    <div class="container py-4 m-auto">
-        <div class="row mb-3">
-            @foreach($categories as $category)
-                <div class="col-md-2 mb-3 col-sm-4">
-                    <div class="card">
-                        <div class="card-body">
-                            <div class="d-flex justify-content-center">
-                                <img src="{{ $category->image ?? asset('images/No_Image_Available.jpg') }}" alt="category image" class="rounded-sm" height="100px" width="100px">
-                            </div>
-                            <h4 class="text-center font-weight-bolder mt-3">
-                                <a href="#">{{ $category->name }}</a>
-                            </h4>
-                        </div>
-                        <div class="card-footer">
-                            <div class="d-flex justify-content-center">
-                                <a href="{{ route('category.edit', $category) }}" class="btn btn-primary btn-sm">
-                                    <span data-feather="edit" class="icon"></span>
-                                </a>
-                                @if(auth()->guard('admin')->check())
-                                    <form action="{{ route('admin.category.destroy', $category) }}" method="post">
-                                        @method('DELETE')
-                                        @csrf
-                                        <button type="submit" class="btn btn-danger btn-sm ml-1">
-                                            <span data-feather="trash-2" class="icon"></span>
-                                        </button>
-                                    </form>
-                                @endif
-                            </div>
-                        </div>
-                    </div>
+    <div class="container-fluid px-5">
+        @if($categories->count())
+            <div class="card card-body bg-light ">
+                <div class="table-responsive-lg">
+                    @component('layouts.components.category-table', ['categories'=>$categories])
+                        category
+                    @endcomponent
                 </div>
-            @endforeach
-        </div>
-        <br>
+            </div>
+        @else
+            <div class="card card-body bg-light text-center">
+                <p class="display-4">No Records Found!</p>
+            </div>
+        @endif
         <hr>
         <div class="d-flex justify-content-between">
             <div class="flex-column"></div>
@@ -55,4 +35,29 @@
             </div>
         </div>
     </div>
+    <!-- The Modal -->
+    @if($categories->count())
+        <div class="modal fade" id="deleteAllModal">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <p class="modal-title">Delete Confirmation</p>
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    </div>
+
+                    <div class="modal-body text-danger font-weight-bold">
+                        <h4>Do you really want to delete all the records!</h4>
+                    </div>
+
+                    <div class="modal-footer">
+                        <form action="{{route('admin.clients.deleteAll')}}" method="post">
+                            @csrf
+                            <button type="submit" class="btn btn-danger btn-sm">Confirm</button>
+                        </form>
+                        <button type="button" class="btn btn-primary btn-sm" data-dismiss="modal">Cancel</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    @endif
 @endsection

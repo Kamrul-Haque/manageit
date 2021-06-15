@@ -2,62 +2,60 @@
 
 namespace App\Http\Controllers;
 
+use App\Category;
 use App\Product;
-use Auth;
 use Illuminate\Http\Request;
 use DB;
+use Illuminate\Support\Facades\File;
 
 class ProductController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function index()
     {
         $products = Product::orderBy('name')->paginate(10);
         return view('product.index', compact('products'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function create()
     {
-        return view('product.create');
+        $categories = Category::orderBy('name')->get();
+        return view('product.create', compact('categories'));
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(Request $request)
     {
         $this->validate($request, [
-            'name' => 'required',
+            'name' => 'required|string|min:4',
             'unit' => 'required',
+            'size' => 'required',
+            'gender' => 'required',
+            'color' => 'required|string|min:4',
+            'image' => 'nullable|file|mimes:png,jpg,jpeg|max:128',
         ]);
 
+        $category = Category::find($request->category);
+
         $product = new Product;
-        $product->name = $request->input('name');
-        $product->unit = $request->input('unit');
+        $product->sl_no = $category->name.'-'.$request->name.'-'.time();
+        $product->name = $request->name;
+        $product->category_id = $category->id;
+        $product->unit = $request->unit;
+        $product->size = $request->size;
+        $product->gender = $request->gender;
+        $product->color = $request->color;
+
+        if ($request->hasFile('image'))
+        {
+            $path = $request->file('image')->store('ProductImages');
+            $product->image = $path;
+        }
+
         $product->save();
 
         toastr()->success('Created Successfully!');
         return redirect('/products');
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Product  $product
-     * @return \Illuminate\Http\Response
-     */
     public function show(Product $product)
     {
         return view('product.show',compact('product'));
@@ -69,46 +67,45 @@ class ProductController extends Controller
         return view('product.sales', compact('products'));
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Product  $product
-     * @return \Illuminate\Http\Response
-     */
     public function edit(Product $product)
     {
         return view('product.edit', compact('product'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Product  $product
-     * @return \Illuminate\Http\Response
-     */
     public function update(Request $request, Product $product)
     {
-        $this->validate($request,[
-            'name' => 'required',
+        $this->validate($request, [
+            'name' => 'required|string|min:4',
             'unit' => 'required',
+            'size' => 'required',
+            'gender' => 'required',
+            'color' => 'required|string|min:4',
+            'image' => 'nullable|file|mimes:png,jpg,jpeg|max:128',
         ]);
 
-        $product = Product::find($product->id);
-        $product->name = $request->input('name');
-        $product->unit = $request->input('unit');
+        $product->name = $request->name;
+        $product->unit = $request->unit;
+        $product->size = $request->size;
+        $product->gender = $request->gender;
+        $product->color = $request->color;
+        $oldImage = $product->getOriginal('image');
+
+        if ($request->hasFile('image'))
+        {
+            if (File::exists($oldImage))
+            {
+                File::delete($oldImage);
+            }
+            $path = $request->file('image')->store('ProductImages');
+            $product->image = $path;
+        }
+
         $product->save();
 
         toastr()->success("Updated Successfully!");
         return redirect('/products');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Product  $product
-     * @return \Illuminate\Http\Response
-     */
     public function destroy(Product $product)
     {
         $product->delete();

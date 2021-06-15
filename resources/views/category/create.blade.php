@@ -41,11 +41,7 @@
                     <input id="image" name="image" type="file" class="custom-file-input @error('image') is-invalid @enderror">
                     <label for="image" class="custom-file-label">Image Name</label>
 
-                    @error('image')
-                    <span class="invalid-feedback" role="alert">
-                                    <strong>{{ $message }}</strong>
-                                </span>
-                    @enderror
+                    @error('image')<span class="invalid-feedback" role="alert"><strong>{{ $message }}</strong></span>@enderror
                 </div>
             </div>
             <hr>
@@ -55,11 +51,14 @@
     </div>
 @endsection
 
-@section('scripts')
+
+@section('script')
     <script type="text/javascript">
-        $(".custom-file-input").on("change", function() {
-            var fileName = $(this).val().split("\\").pop();
-            $(this).siblings(".custom-file-label").addClass("selected").html(fileName);
+        $(document).ready(function (){
+            $(".custom-file-input").on("change", function() {
+                var fileName = $(this).val().split("\\").pop();
+                $(this).siblings(".custom-file-label").addClass("selected").html(fileName);
+            });
         });
     </script>
 @endsection

@@ -56,7 +56,7 @@
     </div>
 @endsection
 
-@section('scripts')
+@section('script')
     <script type="text/javascript">
         $(".custom-file-input").on("change", function() {
             var fileName = $(this).val().split("\\").pop();

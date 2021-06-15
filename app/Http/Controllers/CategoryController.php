@@ -22,8 +22,8 @@ class CategoryController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'name'=>'required|string|min:4',
-            'image'=>'nullable|file|mimes:png,jpg,jpeg|max:2024'
+            'name'=>'required|string|min:4|unique:categories',
+            'image'=>'nullable|file|mimes:png,jpg,jpeg|max:128'
         ]);
 
         $category = new Category();
@@ -49,8 +49,8 @@ class CategoryController extends Controller
     public function update(Request $request, Category $category)
     {
         $request->validate([
-            'name'=>'required|string|min:4',
-            'image'=>'nullable|file|mimes:png,jpg,jpeg|max:2024'
+            'name'=>'required|string|min:4|unique:categories,name,'.$category->id,
+            'image'=>'nullable|file|mimes:png,jpg,jpeg|max:128'
         ]);
 
         $category->name = $request->name;

@@ -6,6 +6,7 @@ use App\BankAccount;
 use App\BankDeposit;
 use App\BankWithdraw;
 use App\CashRegister;
+use App\Category;
 use App\Client;
 use App\ClientPayment;
 use App\Entry;
@@ -75,6 +76,7 @@ class AdminController extends Controller
         $bankDeposits = BankDeposit::onlyTrashed()->orderBy('deleted_at','desc')->paginate(1, ['*'], 'bank-deposits');
         $bankWithdraws = BankWithdraw::onlyTrashed()->orderBy('deleted_at','desc')->paginate(1, ['*'], 'bank-withdraws');
         $productTransfers = ProductTransfer::onlyTrashed()->orderBy('deleted_at','desc')->paginate(1, ['*'], 'product-transfers');
-        return view('trash', compact('products','suppliers','entries','supplierPayments','clients','invoices','clientPayments','godowns','cashs','bankAccounts','bankDeposits','bankWithdraws','productTransfers'));
+        $categories = Category::onlyTrashed()->orderBy('deleted_at','desc')->paginate(1, ['*'], 'product-transfers');
+        return view('trash', compact('products','suppliers','entries','supplierPayments','clients','invoices','clientPayments','godowns','cashs','bankAccounts','bankDeposits','bankWithdraws','productTransfers','categories'));
     }
 }

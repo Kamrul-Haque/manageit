@@ -2,9 +2,14 @@
     <thead class="thead-dark">
         <tr>
             <th>#</th>
+            <th>Image</th>
             <th>NAME</th>
+            <th>Category</th>
             <th>Quantity</th>
             <th>Unit</th>
+            <th>Size</th>
+            <th>Gender</th>
+            <th>Color</th>
             <th class="text-center">OPERATIONS</th>
         </tr>
     </thead>
@@ -12,9 +17,16 @@
     @foreach ($products as $product)
         <tr>
             <td> {{$loop->iteration}} </td>
+            <td>
+                <img src="{{ $product->image }}" alt="image" height="25px" width="25px">
+            </td>
             <td> {{$product->name}} </td>
+            <td> {{$product->category->name}} </td>
             <td> {{$product->totalQuantity()}} </td>
             <td> {{$product->unit}} </td>
+            <td> {{$product->size}} </td>
+            <td> {{$product->gender}} </td>
+            <td> {{$product->color}} </td>
             <td>
                 <div class="row justify-content-center">
                     @if($slot == 'product')
