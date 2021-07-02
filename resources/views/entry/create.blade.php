@@ -121,7 +121,7 @@
                 </span>
                 @enderror
             </div>
-            <div class="form-group">
+            {{--<div class="form-group">
                 <label for="type">Payment Type</label>
                 <select id="type" name="type" class="form-control @error('type') is-invalid @enderror" required>
                     <option value="" selected disabled>Please Select...</option>
@@ -177,7 +177,7 @@
                     </span>
                     @enderror
                 </div>
-            </div>
+            </div>--}}
             <div class="form-group">
                 <label for="amount">Amount</label>
                 <input type="number" step="any" id="amount" name="amount" class="form-control @error('amount') is-invalid @enderror" value="{{ old('amount') }}" required>
@@ -202,7 +202,7 @@
 
 @section('script')
     <script type="text/javascript">
-        $(document).ready(function (){
+        /*$(document).ready(function (){
             var type = $('#type').val();
 
             if (type == 'Cheque')
@@ -253,7 +253,7 @@
                 $('.cheque-group').hide();
                 $('#cheque_no').val(null);
             }
-        });
+        });*/
         $(document).on('input','#price', function (){
             var due = parseFloat($('#price').val()) - parseFloat($('#amount').val());
 

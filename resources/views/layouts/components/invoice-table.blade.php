@@ -19,7 +19,7 @@
     <tbody>
     @foreach ($invoices as $invoice)
         <tr>
-            <td> {{$loop->iteration}} </td>
+            <td> {{$loop->index + 1}} </td>
             <td> {{$invoice->sl_no}} </td>
             <td> {{$invoice->date}} </td>
             <td> {{$invoice->client->name}} </td>

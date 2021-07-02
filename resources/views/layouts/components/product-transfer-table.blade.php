@@ -17,7 +17,7 @@
     <tbody>
     @foreach ($productTransfers as $transfer)
         <tr>
-            <td> {{$loop->iteration}} </td>
+            <td> {{$loop->index + 1}} </td>
             <td> {{$transfer->sl_no}} </td>
             <td> {{$transfer->product->name}} </td>
             <td> {{$transfer->quantity}} </td>

@@ -11,7 +11,7 @@
     <tbody>
     @foreach ($godowns as $godown)
         <tr>
-            <td>{{$loop->iteration}}</td>
+            <td>{{$loop->index + 1}}</td>
             <td> {{$godown->name}} </td>
             <td> {{$godown->location}} </td>
             <td> {{$godown->phone}} </td>

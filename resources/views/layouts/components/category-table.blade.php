@@ -10,7 +10,7 @@
     <tbody>
     @foreach ($categories as $category)
         <tr>
-            <td>{{$loop->iteration}}</td>
+            <td>{{$loop->index + 1}}</td>
             <td>
                 <img src="{{ $category->image }}" alt="image" width="25px" height="25px">
             </td>

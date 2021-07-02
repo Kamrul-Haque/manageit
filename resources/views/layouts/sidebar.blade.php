@@ -156,12 +156,6 @@
                                 Cash Register
                             </a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link {{ Request::is('bank-account*') ? 'active' : '' }}" href="{{ route('bank-account.index') }}">
-                                <span data-feather="home"></span>
-                                Bank Accounts
-                            </a>
-                        </li>
                         @if(Auth::guard('admin')->check())
                             <li class="nav-item">
                                 <a class="nav-link {{ Request::is('admin/users*') ? 'active' : '' }}" href="{{ route('admin.users.index') }}">

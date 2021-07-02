@@ -48,19 +48,6 @@
                 @enderror
             </div>
             <div class="form-group">
-                <label for="unit">Unit</label>
-                <select name="unit" id="unit" class="form-control @error('unit') is-invalid @enderror" required>
-                    <option value="" disabled selected>Please Select...</option>
-                    <option value="Pieces" @if(old('unit')=='Pieces') selected @endif>Pieces</option>
-                </select>
-
-                @error('unit')
-                <span class="invalid-feedback" role="alert">
-                    <strong>{{ $message }}</strong>
-                </span>
-                @enderror
-            </div>
-            <div class="form-group">
                 <label for="size">Size</label>
                 <select name="size" id="size" class="form-control @error('size') is-invalid @enderror" required>
                     <option value="" disabled selected>Please Select...</option>
@@ -73,21 +60,6 @@
                 </select>
 
                 @error('size')
-                <span class="invalid-feedback" role="alert">
-                    <strong>{{ $message }}</strong>
-                </span>
-                @enderror
-            </div>
-            <div class="form-group">
-                <label for="gender">Gender</label>
-                <select name="gender" id="gender" class="form-control @error('gender') is-invalid @enderror" required>
-                    <option value="" disabled selected>Please Select...</option>
-                    <option value="Male" @if(old('gender')=='Male') selected @endif>Male</option>
-                    <option value="Female" @if(old('gender')=='Female') selected @endif>Female</option>
-                    <option value="Other" @if(old('gender')=='Other') selected @endif>Other</option>
-                </select>
-
-                @error('gender')
                 <span class="invalid-feedback" role="alert">
                     <strong>{{ $message }}</strong>
                 </span>

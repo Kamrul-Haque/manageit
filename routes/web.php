@@ -47,9 +47,9 @@ Route::group(['middleware' => 'auth:web,admin'], function (){
     Route::resource('invoices', 'InvoiceController')->except('destroy');
     Route::resource('suppliers', 'SupplierController')->except('destroy');
     Route::resource('supplier-payment', 'SupplierPaymentController')->except('destroy');
-    Route::resource('bank-account','BankAccountController')->except('destroy');
-    Route::resource('bank-deposit','BankDepositController')->only('create','store');
     Route::get('/sales','ProductController@salesIndex')->name('product.sales');
+    /*Route::resource('bank-account','BankAccountController')->except('destroy');
+    Route::resource('bank-deposit','BankDepositController')->only('create','store');
     Route::get('/bank-deposit/{bankDeposit}/editStatus','BankDepositController@editStatus')->name('bank-deposit.status.edit');
     Route::post('/bank-deposit/{bankDeposit}/updateStatus','BankDepositController@updateStatus')->name('bank-deposit.status.update');
     Route::resource('bank-withdraw','BankWithdrawController')->only('create','store','destroy');
@@ -58,7 +58,7 @@ Route::group(['middleware' => 'auth:web,admin'], function (){
     Route::get('/cash-register/withdraw-to-bank','CashRegisterController@withdrawToBankForm')->name('cash-register.withdraw.bank');
     Route::post('/cash-register/withdraw-to-bank','CashRegisterController@withdrawToBank')->name('cash-register.withdraw.bank.store');
     Route::get('/cash-register/deposit-from-bank','CashRegisterController@depositFromBankForm')->name('cash-register.deposit.bank');
-    Route::post('/cash-register/deposit-from-bank','CashRegisterController@depositFromBank')->name('cash-register.deposit.bank.store');
+    Route::post('/cash-register/deposit-from-bank','CashRegisterController@depositFromBank')->name('cash-register.deposit.bank.store');*/
     Route::get('/cash-register', 'CashRegisterController@index')->name('cash-register.index');
     Route::get('/cash-register/deposit', 'CashRegisterController@depositForm')->name('cash-register.deposit');
     Route::post('/cash-register/deposit', 'CashRegisterController@deposit')->name('cash-register.deposit.store');
@@ -109,17 +109,17 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => 'auth:admin
     Route::delete('/cash-register/{cashRegister}', 'CashRegisterController@destroy')->name('cash-register.destroy');
     Route::post('/cash-register/{cashRegister}/restore', 'CashRegisterController@restore')->name('cash-register.restore');
     Route::delete('/cash-register/{cashRegister}/force-delete', 'CashRegisterController@forceDelete')->name('cash-register.force.delete');
-    //Route::post('/cash-register/delete', 'CashRegisterController@destroyAll')->name('cash-register.deleteAll');
+    /*Route::post('/cash-register/delete', 'CashRegisterController@destroyAll')->name('cash-register.deleteAll');
     Route::delete('/bank-account/{bankAccount}','BankAccountController@destroy')->name('bank-account.destroy');
     Route::post('/bank-account/{bankAccount}/restore','BankAccountController@restore')->name('bank-account.restore');
     Route::delete('/bank-account/{bankAccount}/force-delete','BankAccountController@forceDelete')->name('bank-account.force.delete');
-    //Route::post('/bank-account/delete','BankAccountController@destroyAll')->name('bank-account.deleteAll');
+    Route::post('/bank-account/delete','BankAccountController@destroyAll')->name('bank-account.deleteAll');
     Route::delete('/bank-deposit/{bankDeposit}','BankDepositController@destroy')->name('bank-deposit.destroy');
     Route::post('/bank-deposit/{bankDeposit}/restore','BankDepositController@restore')->name('bank-deposit.restore');
     Route::delete('/bank-deposit/{bankDeposit}/force-delete','BankDepositController@forceDelete')->name('bank-deposit.force.delete');
     Route::delete('/bank-withdraw/{bankWithdraw}','BankWithdrawController@destroy')->name('bank-withdraw.destroy');
     Route::post('/bank-withdraw/{bankWithdraw}/restore','BankWithdrawController@restore')->name('bank-withdraw.restore');
-    Route::delete('/bank-withdraw/{bankWithdraw}/force-delete','BankWithdrawController@forceDelete')->name('bank-withdraw.force.delete');
+    Route::delete('/bank-withdraw/{bankWithdraw}/force-delete','BankWithdrawController@forceDelete')->name('bank-withdraw.force.delete');*/
     Route::delete('/client-payment/{clientPayment}','ClientPaymentController@destroy')->name('client-payment.destroy');
     Route::post('/client-payment/{clientPayment}/restore','ClientPaymentController@restore')->name('client-payment.restore');
     Route::delete('/client-payment/{clientPayment}/force-delete','ClientPaymentController@forceDelete')->name('client-payment.force.delete');

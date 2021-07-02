@@ -14,7 +14,7 @@
     <tbody>
     @foreach ($clients as $client)
         <tr>
-            <td>{{$loop->iteration}}</td>
+            <td>{{$loop->index + 1}}</td>
             <td> {{$client->name}} </td>
             <td> {{$client->email}} </td>
             <td> {{$client->phone}} </td>

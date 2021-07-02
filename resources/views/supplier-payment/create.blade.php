@@ -48,68 +48,11 @@
                 @enderror
             </div>
             <div class="form-group">
-                <label for="type">Type</label>
-                <select id="type" name="type" class="form-control @error('type') is-invalid @enderror" required>
-                    <option value="" selected disabled>Please Select...</option>
-                    <option value="Cash" @if(old('type')=="Cash") selected @endif>Cash</option>
-                    <option value="Cheque" @if(old('type')=="Cheque") selected @endif>Cheque</option>
-                    <option value="Card" @if(old('type')=="Card") selected @endif>Card</option>
-                </select>
-
-                @error('type')
-                    <span class="invalid-feedback" role="alert">
-                        <strong>{{ $message }}</strong>
-                    </span>
-                @enderror
-            </div>
-            <div class="form-group cheque-group">
-                <label for="cheque_no">Cheque No.</label>
-                <input type="number" id="cheque_no" name="cheque_no" class="form-control @error('cheque_no') is-invalid @enderror" value="{{ old('cheque_no') }}">
-
-                @error('cheque_no')
-                    <span class="invalid-feedback" role="alert">
-                        <strong>{{ $message }}</strong>
-                    </span>
-                @enderror
-            </div>
-            <div class="form-group card-group">
-                <label for="card">Card No.</label>
-                <input type="number" id="card" name="card" class="form-control @error('card') is-invalid @enderror" value="{{ old('card') }}">
-
-                @error('card')
-                    <span class="invalid-feedback" role="alert">
-                        <strong>{{ $message }}</strong>
-                    </span>
-                @enderror
-            </div>
-            <div class="form-group row card-group">
-                <div class="col-md-6">
-                    <label for="validity">Validity</label>
-                    <input type="text" id="validity" name="validity" class="form-control @error('validity') is-invalid @enderror" placeholder="07/20" value="{{ old('validity') }}">
-
-                    @error('validity')
-                    <span class="invalid-feedback" role="alert">
-                        <strong>{{ $message }}</strong>
-                    </span>
-                    @enderror
-                </div>
-                <div class="col-md-6">
-                    <label for="cvv">CVV</label>
-                    <input type="number" id="cvv" name="cvv" class="form-control @error('cvv') is-invalid @enderror" value="{{ old('cvv') }}">
-
-                    @error('cvv')
-                    <span class="invalid-feedback" role="alert">
-                        <strong>{{ $message }}</strong>
-                    </span>
-                    @enderror
-                </div>
-            </div>
-            <div class="form-group">
                 <label for="amount">Amount</label>
                 <input type="number" step="any" id="amount" name="amount" class="form-control @error('amount') is-invalid @enderror" value="{{ old('amount') }}" required>
 
                 @error('amount')
-                    <span class="invalid-feedback" role="alert">
+                <span class="invalid-feedback" role="alert">
                         <strong>{{ $message }}</strong>
                     </span>
                 @enderror
@@ -119,7 +62,7 @@
                 <input type="date" id="date" name="date" class="form-control @error('date') is-invalid @enderror" value="{{ old('date') }}" required>
 
                 @error('date')
-                    <span class="invalid-feedback" role="alert">
+                <span class="invalid-feedback" role="alert">
                         <strong>{{ $message }}</strong>
                     </span>
                 @enderror
@@ -130,60 +73,3 @@
         </form>
     </div>
 @endsection
-@section('script')
-    <script type="text/javascript">
-        $(document).ready(function (){
-            var type = $('#type').val();
-
-            if (type === 'Cheque')
-            {
-                $('.cheque-group').show();
-                $('.card-group').hide();
-                $('#card').val(null);
-                $('#validity').val(null);
-                $('#cvv').val(null);
-            }
-            else if(type === 'Card') {
-                $('.card-group').show();
-                $('.cheque-group').hide();
-                $('#cheque_no').val(null);
-            }
-            else
-            {
-                $('.card-group').hide();
-                $('#card').val(null);
-                $('#validity').val(null);
-                $('#cvv').val(null);
-                $('.cheque-group').hide();
-                $('#cheque_no').val(null);
-            }
-        });
-        $(document).on('change','#type',function () {
-            var type = $(this).val();
-
-            if (type === 'Cheque')
-            {
-                $('.cheque-group').show();
-                $('.card-group').hide();
-                $('#card').val(null);
-                $('#validity').val(null);
-                $('#cvv').val(null);
-            }
-            else if(type === 'Card') {
-                $('.card-group').show();
-                $('.cheque-group').hide();
-                $('#cheque_no').val(null);
-            }
-            else
-            {
-                $('.card-group').hide();
-                $('#card').val(null);
-                $('#validity').val(null);
-                $('#cvv').val(null);
-                $('.cheque-group').hide();
-                $('#cheque_no').val(null);
-            }
-        });
-    </script>
-@endsection
-

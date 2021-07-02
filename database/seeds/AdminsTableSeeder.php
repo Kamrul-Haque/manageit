@@ -12,12 +12,12 @@ class AdminsTableSeeder extends Seeder
     public function run()
     {
         $admin = new App\Admin;
-        $admin->name = "Utchas";
-        $admin->email = "utchas903@gmail.com";
-        $admin->password = Hash::make('LE.882427');
-        $admin->job_title = "System Developer";
+        $admin->name = "Admin";
+        $admin->email = "admin@email.com";
+        $admin->password = Hash::make('Admin.12345');
+        $admin->job_title = "Admin";
         $admin->nid = 9876543210;
-        $admin->phone = 1521479924;
+        $admin->phone = 9876543210;
         $admin->save();
     }
 }

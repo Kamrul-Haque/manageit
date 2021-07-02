@@ -40,7 +40,7 @@
 </head>
 <body>
     <div class="container pt-3">
-        <img src="{{asset('images/invoice-banner.png')}}" title="Lisa Enterprise" width="100%">
+        <img src="{{asset('images/invoice-banner.png')}}" width="100%" alt="Lota Fashion">
         <hr class="line">
         <div class="row">
             <div class="col-sm-10">
@@ -59,14 +59,14 @@
         </div>
         <br>
         <div class="table-responsive-sm">
-            <table class="table table-bordered" id="table" name="table">
+            <table class="table table-bordered" id="table">
                 <thead class="thead-light">
                     <tr>
                         <th class="print">#</th>
                         <th class="print">Product</th>
-                        <th class="print">Godown</th>
                         <th class="print">Quantity</th>
-                        <th class="print">Unit</th>
+                        <th class="print">Size</th>
+                        <th class="print">Color</th>
                         <th class="print">Unit Price</th>
                         <th class="print">Total Price</th>
                     </tr>
@@ -76,21 +76,13 @@
                     <tr>
                         <td class="print"> {{$loop->iteration}} </td>
                         <td class="print"> {{$product->product->name}} </td>
-                        <td class="print"> {{$product->godown->name}} </td>
                         <td class="print"> {{$product->quantity}} </td>
-                        <td class="print"> {{$product->unit}} </td>
+                        <td class="print"> {{$product->product->size}} </td>
+                        <td class="print"> {{$product->product->color}} </td>
                         <td class="print"> {{number_format($product->unit_selling_price, 2)}} </td>
                         <td class="print" style="text-align: right"> {{number_format($product->selling_price, 2)}} </td>
                     </tr>
                 @endforeach
-                    <tr>
-                        <td colspan="6" class="borderless print" style="text-align: right">Labour Cost</td>
-                        <td class="print" style="text-align: right">{{ number_format($invoice->labour_cost, 2) }}</td>
-                    </tr>
-                    <tr>
-                        <td colspan="6" class="borderless print" style="text-align: right">Transport Cost</td>
-                        <td class="print" style="text-align: right">{{ number_format($invoice->transport_cost, 2) }}</td>
-                    </tr>
                     <tr>
                         <td colspan="6" class="borderless print" style="text-align: right">Subtotal</td>
                         <td class="print" style="text-align: right">{{ number_format($invoice->subtotal, 2) }}</td>
@@ -100,24 +92,12 @@
                         <td class="print" style="text-align: right">{{ number_format($invoice->discount, 2) }}</td>
                     </tr>
                     <tr>
-                        <td colspan="6" class="borderless print" style="text-align: right"><strong>Grand Total</strong></td>
-                        <td class="print" style="text-align: right"><strong>{{ number_format($invoice->grand_total, 2) }}</strong></td>
+                        <td colspan="6" class="borderless print" style="text-align: right">Grand Total</td>
+                        <td class="print" style="text-align: right">{{ number_format($invoice->grand_total, 2) }}</td>
                     </tr>
                     <tr>
                         <td colspan="6" class="borderless print" style="text-align: right">Paid</td>
                         <td class="print" style="text-align: right">{{ number_format($invoice->paid, 2) }}</td>
-                    </tr>
-                    <tr>
-                        <td colspan="6" class="borderless print" style="text-align: right">Due</td>
-                        <td class="print" style="text-align: right">{{ number_format($invoice->due, 2) }}</td>
-                    </tr>
-                    <tr>
-                        <td colspan="6" class="borderless print" style="text-align: right">Previous Due</td>
-                        <td class="print" style="text-align: right">{{ number_format($invoice->client->total_due - $invoice->due, 2) }}</td>
-                    </tr>
-                    <tr>
-                        <td colspan="6" class="borderless print" style="text-align: right"><strong>Total Due</strong></td>
-                        <td class="print" style="text-align: right"><strong>{{ number_format($invoice->client->total_due, 2) }}</strong></td>
                     </tr>
                 </tbody>
             </table>

@@ -26,18 +26,18 @@ class SupplierPaymentController extends Controller
     {
         $request->validate([
             'supplier'=>'required',
-            'type'=>'required',
+            /*'type'=>'required',
             'cheque_no'=>'nullable|required_if:type,Cheque',
             'card'=>'nullable|required_if:type,Card',
             'validity'=>'nullable|required_if:type,Card',
-            'cvv'=>'nullable|required_if:type,Card',
+            'cvv'=>'nullable|required_if:type,Card',*/
             'amount'=>'required|numeric|gt:0',
             'date'=>'required|before_or_equal:today',
         ]);
 
         $supplierPayment = new SupplierPayment;
         $supplierPayment->supplier_id = $request->supplier;
-        $supplierPayment->type = $request->type;
+        /*$supplierPayment->type = $request->type;*/
 
         if ($request->type == 'Cheque')
         {
@@ -59,11 +59,6 @@ class SupplierPaymentController extends Controller
         $supplierPayment->received_by = Auth::user()->name;
         $supplierPayment->push();
         $this->saveWithdraw($request->amount, $request->date);
-
-        $id = $supplierPayment->id;
-        $supplierPayment = SupplierPayment::find($id);
-        $supplierPayment->sl_no = 'SPYT_'.$id;
-        $supplierPayment->save();
 
         toastr()->success('Created Successfully');
         return redirect('/supplier-payment');

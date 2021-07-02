@@ -6,9 +6,7 @@
             <th>NAME</th>
             <th>Category</th>
             <th>Quantity</th>
-            <th>Unit</th>
             <th>Size</th>
-            <th>Gender</th>
             <th>Color</th>
             <th class="text-center">OPERATIONS</th>
         </tr>
@@ -23,9 +21,7 @@
             <td> {{$product->name}} </td>
             <td> {{$product->category->name}} </td>
             <td> {{$product->totalQuantity()}} </td>
-            <td> {{$product->unit}} </td>
             <td> {{$product->size}} </td>
-            <td> {{$product->gender}} </td>
             <td> {{$product->color}} </td>
             <td>
                 <div class="row justify-content-center">

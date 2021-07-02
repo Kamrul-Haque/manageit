@@ -14,7 +14,7 @@
     <tbody>
     @foreach ($suppliers as $supplier)
         <tr>
-            <td>{{$loop->iteration}}</td>
+            <td>{{$loop->index + 1}}</td>
             <td> {{$supplier->name}} </td>
             <td> {{$supplier->email}} </td>
             <td> {{$supplier->phone}} </td>

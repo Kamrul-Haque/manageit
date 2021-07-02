@@ -26,18 +26,18 @@ class ClientPaymentController extends Controller
     {
         $request->validate([
             'client'=>'required',
-            'type'=>'required',
+            /*'type'=>'required',
             'cheque_no'=>'nullable|required_if:type,Cheque',
             'card'=>'nullable|required_if:type,Card',
             'validity'=>'nullable|required_if:type,Card',
-            'cvv'=>'nullable|required_if:type,Card',
+            'cvv'=>'nullable|required_if:type,Card',*/
             'amount'=>'required|numeric|gt:0',
             'date'=>'required|before_or_equal:today',
         ]);
 
         $clientPayment = new ClientPayment;
         $clientPayment->client_id = $request->client;
-        $clientPayment->type = $request->type;
+        /*$clientPayment->type = $request->type;*/
 
         if ($request->type == 'Cheque')
         {
@@ -60,10 +60,6 @@ class ClientPaymentController extends Controller
         $clientPayment->push();
         $this->saveDeposit($request->amount, $request->date);
 
-        $id = $clientPayment->id;
-        $clientPayment = ClientPayment::find($id);
-        $clientPayment->sl_no = 'CPYT_'.$id;
-
         toastr()->success('Created Successfully');
         return redirect('/client-payment');
     }
@@ -80,7 +76,7 @@ class ClientPaymentController extends Controller
 
     public function show(ClientPayment $clientPayment)
     {
-        return view('client-payment.show', compact('payment'));
+        return view('client-payment.show', compact('clientPayment'));
     }
 
     public function edit(ClientPayment $clientPayment)

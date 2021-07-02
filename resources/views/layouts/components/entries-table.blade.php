@@ -20,7 +20,7 @@
     <tbody>
     @foreach ($entries as $entry)
         <tr>
-            <td> {{$loop->iteration}} </td>
+            <td> {{$loop->index + 1}} </td>
             <td> {{$entry->sl_no}} </td>
             <td> {{$entry->product->name}} </td>
             <td> {{$entry->quantity}} {{$entry->unit}}</td>

@@ -27,14 +27,7 @@
 @endsection
 @section('content')
     <div class="container-fluid pl-5 pr-5">
-        <div class="pb-0">
-            <div>
-                <a class="btn btn-light float-left" href=" {{route('clients.index')}} ">Back</a>
-            </div>
-            <div class="text-center" style="padding-left: 100px">
-                <h2>Client History</h2>
-            </div>
-        </div>
+        <h2>Client History</h2>
         <hr>
         <h5>Name: {{ $client->name }}</h5>
         <h5>Phone: {{ $client->phone }}</h5>
@@ -109,11 +102,13 @@
                 <h5>Total Due: {{$client->total_due}} </h5>
             </div>
         </div>
-        <ul id="invLinks" class="pagination justify-content-center">
+        {{--<ul id="invLinks" class="pagination justify-content-center">
             {{ $invoices->links() }}
         </ul>
         <ul id="payLinks" class="pagination justify-content-center">
             {{ $payments->links() }}
-        </ul>
+        </ul>--}}
+        <hr>
+        <a class="btn btn-light float-left" href=" {{route('clients.index')}} ">Back</a>
     </div>
 @endsection

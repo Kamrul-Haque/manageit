@@ -58,8 +58,6 @@ class InvoiceController extends Controller
         $this->validate($request, [
             'date' => 'required|after:31-12-2004|before_or_equal:today',
             'client' => 'required',
-            'labour' => 'required|numeric|between:0,99999.99',
-            'transport' => 'required|numeric|between:0,99999.99',
             'subtotal' => 'required|numeric|between:0,999999999.99',
             'discount' => 'required|numeric|between:0,99999.99',
             'gtotal' => 'required|numeric|between:0,999999999.99',
@@ -71,7 +69,6 @@ class InvoiceController extends Controller
             'unit.*' => 'required',
             'uprice.*' => 'required|numeric|between:0,99999.99',
             'price.*' => 'required|numeric|between:0,99999.99',
-            'type'=>'required',
         ]);
 
         $invoice = new Invoice;
@@ -134,7 +131,6 @@ class InvoiceController extends Controller
     {
         $clientPayment = new ClientPayment;
         $clientPayment->client_id = $request->client;
-        $clientPayment->type = $request->type;
 
         if ($request->type == 'Cheque')
         {

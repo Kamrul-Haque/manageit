@@ -26,9 +26,7 @@ class ProductController extends Controller
     {
         $this->validate($request, [
             'name' => 'required|string|min:4',
-            'unit' => 'required',
             'size' => 'required',
-            'gender' => 'required',
             'color' => 'required|string|min:4',
             'image' => 'nullable|file|mimes:png,jpg,jpeg|max:128',
         ]);
@@ -39,9 +37,7 @@ class ProductController extends Controller
         $product->sl_no = $category->name.'-'.$request->name.'-'.time();
         $product->name = $request->name;
         $product->category_id = $category->id;
-        $product->unit = $request->unit;
         $product->size = $request->size;
-        $product->gender = $request->gender;
         $product->color = $request->color;
 
         if ($request->hasFile('image'))
@@ -76,17 +72,13 @@ class ProductController extends Controller
     {
         $this->validate($request, [
             'name' => 'required|string|min:4',
-            'unit' => 'required',
             'size' => 'required',
-            'gender' => 'required',
             'color' => 'required|string|min:4',
             'image' => 'nullable|file|mimes:png,jpg,jpeg|max:128',
         ]);
 
         $product->name = $request->name;
-        $product->unit = $request->unit;
         $product->size = $request->size;
-        $product->gender = $request->gender;
         $product->color = $request->color;
         $oldImage = $product->getOriginal('image');
 

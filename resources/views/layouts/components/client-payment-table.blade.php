@@ -2,17 +2,9 @@
     <thead class="thead-dark">
         <tr>
             <th>#</th>
-            <th>SL No.</th>
             <th>Client Name</th>
-            <th>Type</th>
             <th>Amount</th>
             <th>Payment Date</th>
-            <th>Account No.</th>
-            <th>Status</th>
-            <th>Date of Draw</th>
-            <th>Card No.</th>
-            <th>Validity</th>
-            <th>CVV</th>
             <th>Received By</th>
             <th>OPERATIONS</th>
         </tr>
@@ -20,18 +12,10 @@
     <tbody>
     @foreach ($clientPayments as $payment)
         <tr>
-            <td> {{$loop->iteration}} </td>
-            <td> {{$payment->sl_no}} </td>
+            <td> {{$loop->index + 1}} </td>
             <td> {{$payment->client->name}} </td>
-            <td> {{$payment->type}} </td>
             <td> {{$payment->amount}} </td>
             <td> {{$payment->date_of_issue}} </td>
-            <td> {{$payment->acc_no}} </td>
-            <td> {{$payment->status}} </td>
-            <td> {{$payment->date_of_draw}} </td>
-            <td> {{$payment->card_no}} </td>
-            <td> {{$payment->validity}} </td>
-            <td> {{$payment->cvv}} </td>
             <td> {{$payment->received_by}} </td>
             <td>
                 <div class="row justify-content-center">

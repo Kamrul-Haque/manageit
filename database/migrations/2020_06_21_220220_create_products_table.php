@@ -18,8 +18,6 @@ class CreateProductsTable extends Migration
             $table->string('sl_no');
             $table->unsignedBigInteger('category_id');
             $table->string('name');
-            $table->string('unit');
-            $table->string('gender');
             $table->string('size');
             $table->string('color');
             $table->string('image')->nullable();

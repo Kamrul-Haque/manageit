@@ -13,7 +13,7 @@
     <tbody>
     @foreach ($cashs as $cash)
         <tr>
-            <td> {{$loop->iteration}} </td>
+            <td> {{$loop->index + 1}} </td>
             <td> {{$cash->type}} </td>
             <td> {{number_format($cash->amount, 2)}} </td>
             <td> {{$cash->date}} </td>

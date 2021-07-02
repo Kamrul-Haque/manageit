@@ -38,18 +38,24 @@
                 <table class="table table-striped table-hover pt-3" id="products">
                     <tr>
                         <th>#</th>
+                        <th>Image</th>
                         <th>NAME</th>
                         <th>Quantity</th>
-                        <th>Unit</th>
+                        <th>Size</th>
+                        <th>Color</th>
                         <th>Transfer</th>
                     </tr>
                     <tbody>
                     @foreach ($products as $product)
                         <tr>
-                            <td> {{$loop->iteration}} </td>
+                            <td> {{$loop->index + 1}} </td>
+                            <td>
+                                <img src="{{$product->image}}" alt="image" height="25px" width="25px">
+                            </td>
                             <td> {{$product->name}} </td>
                             <td> {{$product->pivot->quantity}} </td>
-                            <td> {{$product->unit}} </td>
+                            <td>{{$product->size}}</td>
+                            <td>{{$product->color}}</td>
                             <td>
                                 <a href="{{ route('product-transfers.create', ['godown'=>$godown,'product'=>$product]) }}" class="btn btn-primary btn-sm">
                                     <span data-feather="log-out" style="height: 15px; width: 15px; padding: 0"></span>
@@ -71,7 +77,6 @@
                         <th>SL NO.</th>
                         <th>NAME</th>
                         <th>QUANTITY</th>
-                        <th>UNIT</th>
                         <th>ENTRY DATE</th>
                         <th>BOUGHT FROM</th>
                         <th>PRICE</th>
@@ -79,11 +84,10 @@
                     <tbody>
                     @foreach ($entries as $entry)
                         <tr>
-                            <td> {{$loop->iteration}} </td>
+                            <td> {{$loop->index + 1}} </td>
                             <td> {{$entry->sl_no}} </td>
                             <td> {{$entry->product->name}} </td>
                             <td> {{$entry->quantity}} </td>
-                            <td> {{$entry->unit}} </td>
                             <td> {{$entry->date}} </td>
                             <td> {{$entry->supplier->name}} </td>
                             <td> {{$entry->buying_price}} </td>
@@ -99,14 +103,14 @@
             <div class="flex-column">
                 <a class="btn btn-light float-left" href=" {{route('godowns.index')}} ">Back</a>
             </div>
-            <div class="flex-column">
+            {{--<div class="flex-column">
                 <ul class="pagination justify-content-center" id="prodLinks">
                     {{ $products->links() }}
                 </ul>
                 <ul class="pagination justify-content-center" id="entLinks">
                     {{ $entries->links() }}
                 </ul>
-            </div>
+            </div>--}}
             <div class="flex-column">
                 <a class="btn btn-primary float-left" href=" {{route('godowns.edit', $godown)}} ">Edit</a>
             </div>

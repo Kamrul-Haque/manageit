@@ -46,11 +46,10 @@ class EntryController extends Controller
             'godown' => 'required',
             'supplier' => 'required',
             'date' => 'required|after:31-12-2004|before_or_equal:today',
-            'type'=>'required',
-            'cheque_no'=>'nullable|required_if:type,Cheque',
+            /*'cheque_no'=>'nullable|required_if:type,Cheque',
             'card'=>'nullable|required_if:type,Card',
             'validity'=>'nullable|required_if:type,Card',
-            'cvv'=>'nullable|required_if:type,Card',
+            'cvv'=>'nullable|required_if:type,Card',*/
             'amount'=>'required|numeric|gte:0|lte:price',
         ]);
 
@@ -62,15 +61,13 @@ class EntryController extends Controller
 
         $entry->product_id = $pid;
         $entry->quantity = $quantity;
-        $product = Product::find($pid);
-        $entry->unit = $product->unit;
         $entry->buying_price = $price;
         $entry->godown_id = $gid;
         $entry->date = $request->date;
         $entry->supplier_id = $request->supplier;
         $entry->paid = $request->amount;
         $entry->due = $request->due;
-        $entry->entry_by = Auth::user()->product;
+        $entry->entry_by = Auth::user()->name;
 
         if ($request->amount > 0)
             $this->savePayment($request);
@@ -92,14 +89,14 @@ class EntryController extends Controller
         $entry->save();
 
         toastr()->success('Created Successfully!');
-        return redirect('/entries');
+        return redirect()->route('entries.index');
     }
 
     public function savePayment(Request $request)
     {
         $supplierPayment = new SupplierPayment;
         $supplierPayment->supplier_id = $request->supplier;
-        $supplierPayment->type = $request->type;
+        /*$supplierPayment->type = $request->type;*/
 
         if ($request->type == 'Cheque')
         {
@@ -161,7 +158,7 @@ class EntryController extends Controller
         }
 
         toastr()->warning('Entry Deleted');
-        return redirect('/entries');
+        return redirect()->route('entries.index');
     }
 
     /*public function destroyAll()
@@ -181,7 +178,7 @@ class EntryController extends Controller
         DB::statement('ALTER TABLE godown_product AUTO_INCREMENT = 0');
 
         toastr()->error('All Records Deleted!');
-        return redirect('/entries');
+        return redirect('->route('entry.index);
     }*/
 
     public function restore($entry)

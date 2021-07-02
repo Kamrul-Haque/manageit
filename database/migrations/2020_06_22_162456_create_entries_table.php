@@ -20,7 +20,6 @@ class CreateEntriesTable extends Migration
             $table->unsignedBigInteger('godown_id');
             $table->unsignedBigInteger('supplier_id');
             $table->decimal('quantity',7,2)->unsigned();
-            $table->string('unit');
             $table->decimal('buying_price',11,2)->unsigned();
             $table->decimal('paid',11,2)->unsigned();
             $table->decimal('due',11,2)->unsigned();
