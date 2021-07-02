@@ -19,6 +19,7 @@
             <td> {{$payment->received_by}} </td>
             <td>
                 <div class="row justify-content-center">
+                    <a class="btn btn-success float-right" href="{{route('client.payment.print',$payment)}}"><span data-feather="printer" style="width: 15px; height: 15px; padding: 0; margin-right: 3px"></span></a>
                     @auth('admin')
                         @if($slot == 'trash')
                             <form action="{{route('admin.client-payment.restore', $payment)}}" method="post">

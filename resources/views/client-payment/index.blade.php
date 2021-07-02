@@ -52,7 +52,7 @@
                     {{ $clientPayments->links() }}
                 </ul>
             </div>
-            <div class="flex-column">
+            <div class="flex-column justify-content-between">
                 <a class="btn btn-success float-left" href=" {{route('client-payment.create')}} ">Add New</a>
             </div>
         </div>

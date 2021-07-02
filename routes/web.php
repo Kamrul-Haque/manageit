@@ -32,6 +32,7 @@ Route::prefix('admin')->group(function() {
 
 Route::group(['middleware' => 'auth:web,admin'], function (){
     Route::get('/invoices/print/{invoice}', 'InvoiceController@print')->name('invoices.print');
+    Route::get('/client-payment/print/{clientPayment}', 'ClientPaymentController@print')->name('client.payment.print');
     Route::get('/quotation/print','InvoiceController@quotationPrint')->name('quotation.print');
     Route::get('/my-account',function (){
         return view('my-account');

@@ -131,4 +131,9 @@ class ClientPaymentController extends Controller
         toastr()->error('Entry Permanently Deleted!');
         return back();
     }
+
+    public function print(ClientPayment $clientPayment)
+    {
+        return view('layouts.print-client-payment', compact('clientPayment'));
+    }
 }
