@@ -15,22 +15,12 @@ use Auth;
 
 class InvoiceController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function index()
     {
         $invoices = Invoice::latest()->paginate(11);
         return view('invoice.index', compact('invoices'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\JsonResponse
-     */
     public function create()
     {
         $clients = Client::orderBy('name')->get();
@@ -46,18 +36,21 @@ class InvoiceController extends Controller
 
         return response()->json($godowns);
     }
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function getUnit(Request $request)
+
+    public function getSize(Request $request)
     {
         $product = $request->get('id');
-        $unit = Product::find($product)->unit;
+        $size = Product::find($product)->size;
 
-        return response()->json($unit);
+        return response()->json($size);
+    }
+
+    public function getColor(Request $request)
+    {
+        $product = $request->get('id');
+        $color = Product::find($product)->color;
+
+        return response()->json($color);
     }
 
     public function store(Request $request)
@@ -112,7 +105,6 @@ class InvoiceController extends Controller
                 'product_id' => $input,
                 'godown_id' => $inputs['godown'][$index],
                 'quantity' => $inputs['quantity'][$index],
-                'unit' => $inputs['unit'][$index],
                 'unit_selling_price' => $inputs['uprice'][$index],
                 'selling_price' => $inputs['price'][$index]
             ];
@@ -179,12 +171,6 @@ class InvoiceController extends Controller
         $cash->save();
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Invoice  $invoice
-     * @return \Illuminate\Http\Response
-     */
     public function show(Invoice $invoice)
     {
         $invoice = Invoice::find($invoice->id);
@@ -197,12 +183,6 @@ class InvoiceController extends Controller
         return view('layouts.print-invoice', compact('invoice'));
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Invoice  $invoice
-     * @return \Illuminate\Http\Response
-     */
     public function destroy(Invoice $invoice)
     {
         foreach ($invoice->invoiceProducts as $invoiceProduct)

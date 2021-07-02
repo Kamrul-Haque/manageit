@@ -18,8 +18,8 @@ class CreateInvoicesTable extends Migration
             $table->string('sl_no')->nullable();
             $table->string('date');
             $table->unsignedBigInteger('client_id');
-            $table->decimal('labour_cost',7,2)->unsigned();
-            $table->decimal('transport_cost',7,2)->unsigned();
+            $table->decimal('labour_cost',7,2)->unsigned()->nullable();
+            $table->decimal('transport_cost',7,2)->unsigned()->nullable();
             $table->decimal('subtotal',11,2)->unsigned();
             $table->decimal('discount',7,2)->unsigned()->nullable();
             $table->decimal('tax',7,2)->unsigned()->nullable();

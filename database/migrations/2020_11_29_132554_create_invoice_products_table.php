@@ -19,7 +19,6 @@ class CreateInvoiceProductsTable extends Migration
             $table->unsignedBigInteger('product_id');
             $table->unsignedBigInteger('godown_id');
             $table->decimal('quantity',7,2)->unsigned();
-            $table->string('unit');
             $table->decimal('unit_selling_price',11,2)->unsigned();
             $table->decimal('selling_price',11,2)->unsigned();
             $table->softDeletes();

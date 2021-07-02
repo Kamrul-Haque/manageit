@@ -37,7 +37,7 @@ Route::group(['middleware' => 'auth:web,admin'], function (){
         return view('my-account');
     })->name('my.account');
     Route::post('/search','SearchController@search')->name('search');
-    Route::resource('category','CategoryController')->except('destroy','show');
+    Route::resource('category','CategoryController')->except('destroy');
     Route::resource('products', 'ProductController')->except('destroy');
     Route::resource('godowns', 'GodownController')->except('destroy');
     Route::resource('entries', 'EntryController')->except('destroy');
@@ -131,5 +131,6 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => 'auth:admin
     Route::delete('/product-transfers/{productTransfer}/force-delete','ProductTransferController@forceDelete')->name('product-transfers.force.delete');
     Route::get('/trash','AdminController@trash')->name('trash');
 });
-Route::post('ajax-request', 'InvoiceController@getGodowns')->name('invoices.getGodowns');
-Route::post('ajax-request-unit', 'InvoiceController@getUnit')->name('invoices.getUnit');
+Route::post('get-godowns', 'InvoiceController@getGodowns')->name('invoices.getGodowns');
+Route::post('get-size', 'InvoiceController@getSize')->name('invoices.getSize');
+Route::post('get-color', 'InvoiceController@getColor')->name('invoices.getColor');

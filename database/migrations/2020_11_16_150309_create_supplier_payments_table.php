@@ -17,7 +17,7 @@ class CreateSupplierPaymentsTable extends Migration
             $table->bigIncrements('id');
             $table->string('sl_no')->nullable();
             $table->unsignedBigInteger('supplier_id');
-            $table->string('type');
+            $table->string('type')->default('Cash');
             $table->decimal('amount',11,2)->unsigned();
             $table->string('date_of_issue');
             $table->string('account_no')->default('N/A');

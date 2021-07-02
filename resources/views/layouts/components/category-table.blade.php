@@ -25,7 +25,7 @@
                             </button>
                         </form>
                     @else
-                        {{--<a href="{{route('clients.show',$category)}}" class="btn btn-dark btn-sm" title="client history"><span data-feather="eye" style="height: 15px; width: 15px; padding: 0"></span></a>--}}
+                        <a href="{{route('category.show',$category)}}" class="btn btn-dark btn-sm" title="client history"><span data-feather="eye" style="height: 15px; width: 15px; padding: 0"></span></a>
                         <div class="ml-1">
                             <a href="{{route('category.edit',$category)}}" class="btn btn-primary btn-sm" title="edit"><span data-feather="edit" style="height: 15px; width: 15px; padding: 0"></span></a>
                         </div>
