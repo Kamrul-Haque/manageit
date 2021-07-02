@@ -12,7 +12,11 @@
         <tr>
             <td>{{$loop->index + 1}}</td>
             <td>
-                <img src="{{ $category->image }}" alt="image" width="25px" height="25px">
+                <img src="{{ $category->image }}" alt="image" width="25px" height="25px" data-toggle="modal" data-target="#image{{$loop->index}}">
+                @component('layouts.components.image-modal')
+                    @slot('loop') {{$loop->index}} @endslot
+                {{$category->image}}
+                @endcomponent
             </td>
             <td> {{$category->name}} </td>
             <td>

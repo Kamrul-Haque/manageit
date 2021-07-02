@@ -14,9 +14,13 @@
     <tbody>
     @foreach ($products as $product)
         <tr>
-            <td> {{$loop->iteration}} </td>
+            <td> {{$loop->index+1}} </td>
             <td>
-                <img src="{{ $product->image }}" alt="image" height="25px" width="25px">
+                <img src="{{ $product->image }}" alt="image" height="25px" width="25px" data-toggle="modal" data-target="#image{{$loop->index}}">
+                @component('layouts.components.image-modal')
+                    @slot('loop') {{$loop->index}} @endslot
+                    {{$product->image}}
+                @endcomponent
             </td>
             <td> {{$product->name}} </td>
             <td> {{$product->category->name}} </td>
