@@ -30,8 +30,7 @@
 @endsection
 @section('content')
     <div class="container">
-        <a class="btn btn-light" href=" {{ route('products.index')}} ">Back</a>
-        <h2 style="float: right">Products</h2>
+        <h2>Products</h2>
         <hr>
         <div class="card card-body bg-light">
             <div class="table-responsive-lg">
@@ -75,6 +74,9 @@
             </div>
         </div>
         <hr>
-        <a href="{{route('payments.create')}}" class="btn btn-block btn-success d-block">Add New</a>
+        <div class="d-flex justify-content-between">
+            <a class="btn btn-light" href=" {{ route('products.index')}} ">Back</a>
+            <a href="{{route('payments.create')}}" class="btn btn-block btn-success d-block">Add New</a>
+        </div>
     </div>
 @endsection

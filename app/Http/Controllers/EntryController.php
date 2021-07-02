@@ -137,23 +137,11 @@ class EntryController extends Controller
         $cash->save();
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Entry  $entry
-     * @return \Illuminate\Http\Response
-     */
     public function show(Entry $entry)
     {
         return view('entry.show', compact('entry'));
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Entry  $entry
-     * @return \Illuminate\Http\Response
-     */
     public function destroy(Entry $entry)
     {
         $gid = $entry->godown_id;
@@ -176,7 +164,7 @@ class EntryController extends Controller
         return redirect('/entries');
     }
 
-    public function destroyAll()
+    /*public function destroyAll()
     {
         $products = Product::all();
         foreach ($products as $product)
@@ -194,7 +182,7 @@ class EntryController extends Controller
 
         toastr()->error('All Records Deleted!');
         return redirect('/entries');
-    }
+    }*/
 
     public function restore($entry)
     {

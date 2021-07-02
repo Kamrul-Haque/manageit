@@ -27,8 +27,7 @@
 @endsection
 @section('content')
     <div class="container-fluid pl-5 pr-5">
-        <a class="btn btn-light" href=" {{route('admin.dashboard')}} ">Back</a>
-        <h2 style="float: right">Product Transfers</h2>
+        <h2>Product Transfers</h2>
         <hr>
         @if($productTransfers->count())
             <div class="card card-body bg-light">
@@ -44,10 +43,12 @@
             </div>
         @endif
         <hr>
-        <div class="col-md-8">
+        <div class="d-flex justify-content-between">
+            <a class="btn btn-light" href=" {{route('admin.dashboard')}} ">Back</a>
             <ul class="pagination justify-content-center">
                 {{ $productTransfers->links() }}
             </ul>
+            <div class="flex-column"></div>
         </div>
     </div>
 @endsection

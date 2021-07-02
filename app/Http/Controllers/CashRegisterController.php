@@ -11,22 +11,12 @@ use Illuminate\Http\Request;
 
 class CashRegisterController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function index()
     {
         $cashs = CashRegister::latest()->paginate(10);
         return view('cash-register.index', compact('cashs'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function show(CashRegister $cashRegister)
     {
         return view('cash-register.show', compact('cashRegister'));
@@ -37,12 +27,6 @@ class CashRegisterController extends Controller
         return view('cash-register.deposit');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
     public function deposit(Request $request)
     {
         $this->validate($request, [
@@ -67,12 +51,7 @@ class CashRegisterController extends Controller
     {
         return view('cash-register.withdraw');
     }
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
+
     public function withdraw(Request $request)
     {
         $this->validate($request, [
@@ -112,13 +91,13 @@ class CashRegisterController extends Controller
         return redirect('/cash-register');
     }
 
-    public function destroyAll()
+    /*public function destroyAll()
     {
         CashRegister::truncate();
 
         toastr()->error('All Records deleted');
         return redirect('/cash-register');
-    }
+    }*/
 
     public function restore($cashRegister)
     {

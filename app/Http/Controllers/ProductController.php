@@ -114,7 +114,7 @@ class ProductController extends Controller
         return redirect('/products');
     }
 
-    public function destroyAll()
+    /*public function destroyAll()
     {
         $products = Product::all();
         foreach ($products as $product)
@@ -127,7 +127,7 @@ class ProductController extends Controller
 
         toastr()->error('All Records Deleted!');
         return redirect('/admin/products');
-    }
+    }*/
 
     public function restore($product)
     {

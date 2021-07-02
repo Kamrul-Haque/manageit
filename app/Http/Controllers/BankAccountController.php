@@ -10,33 +10,17 @@ use Illuminate\Http\Request;
 
 class BankAccountController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function index()
     {
         $bankAccounts = BankAccount::latest()->paginate(10);
         return view('bank-accounts.index', compact('bankAccounts'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function create()
     {
         return view('bank-accounts.create');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(Request $request)
     {
         $request->validate([
@@ -57,12 +41,6 @@ class BankAccountController extends Controller
         return redirect('/bank-account');
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\BankAccount  $bankAccount
-     * @return \Illuminate\Http\Response
-     */
     public function show(BankAccount $bankAccount)
     {
         $bankDeposits = BankDeposit::where('bank_account_id', $bankAccount->id)->get();
@@ -70,24 +48,11 @@ class BankAccountController extends Controller
         return view('bank-accounts.show', compact('bankAccount', 'bankDeposits','bankWithdraws'));
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\BankAccount  $bankAccount
-     * @return \Illuminate\Http\Response
-     */
     public function edit(BankAccount $bankAccount)
     {
         return view('bank-accounts.edit', compact('bankAccount'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\BankAccount  $bankAccount
-     * @return \Illuminate\Http\Response
-     */
     public function update(Request $request, BankAccount $bankAccount)
     {
         $request->validate([
@@ -107,12 +72,6 @@ class BankAccountController extends Controller
         return redirect('/bank-account');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\BankAccount  $bankAccount
-     * @return \Illuminate\Http\Response
-     */
     public function destroy(BankAccount $bankAccount)
     {
         $bankAccount->delete();
@@ -121,13 +80,13 @@ class BankAccountController extends Controller
         return redirect('/bank-account');
     }
 
-    public function destroyAll()
+    /*public function destroyAll()
     {
         DB::table('bank_accounts')->delete();
 
         toastr()->error('All Records Deleted');
         return redirect('/bank-account');
-    }
+    }*/
 
     public function restore($bankAccount)
     {

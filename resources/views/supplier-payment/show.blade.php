@@ -27,8 +27,7 @@
 @endsection
 @section('content')
     <div class="container-fluid pl-5 pr-5">
-        <a class="btn btn-light" href=" {{route('admin.dashboard')}} ">Back</a>
-        <h2 style="float: right">Payments</h2>
+        <h2>Payments</h2>
         <hr>
         <div class="card card-body bg-light">
             <div class="table-responsive-lg">
@@ -86,6 +85,9 @@
             </div>
         </div>
         <hr>
-        <a href="{{route('supplier-payment.create')}}" class="btn btn-block btn-success d-block">Add New</a>
+        <div class="d-flex justify-content-between">
+            <a class="btn btn-light" href=" {{route('admin.dashboard')}} ">Back</a>
+            <a href="{{route('supplier-payment.create')}}" class="btn btn-block btn-success d-block">Add New</a>
+        </div>
     </div>
 @endsection

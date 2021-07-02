@@ -27,10 +27,7 @@
 @endsection
 @section('content')
     <div class="container-fluid pl-5 pr-5">
-        <div class="form-group pb-0">
-            <a class="btn btn-light float-left" href=" {{route('bank-account.index')}} ">Back</a>
-            <h2 class="text-center">Bank Account Details</h2>
-        </div>
+        <h2>Bank Account Details</h2>
         <hr>
         <h5>Bank Name: {{ $bankAccount->bank_name }}</h5>
         <h5>Branch: {{ $bankAccount->branch }}</h5>
@@ -51,6 +48,16 @@
                 @component('layouts.components.bank-withdraw-table', ['bankWithdraws'=>$bankWithdraws])
                     withdraw
                 @endcomponent
+            </div>
+        </div>
+        <hr>
+        <div class="d-flex justify-content-between">
+            <div class="flex-column">
+                <a class="btn btn-light float-left" href=" {{route('bank-account.index')}} ">Back</a>
+            </div>
+            <div class="d-flex justify-content-end">
+                <a class="btn btn-outline-success float-left ml-1" href=" {{route('bank-deposit.create')}} ">Deposit</a>
+                <a class="btn btn-outline-danger float-right mr-1" href=" {{route('bank-withdraw.create')}} ">Withdraw</a>
             </div>
         </div>
     </div>

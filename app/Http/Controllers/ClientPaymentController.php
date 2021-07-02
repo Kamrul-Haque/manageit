@@ -10,34 +10,18 @@ use Illuminate\Http\Request;
 
 class ClientPaymentController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function index()
     {
         $clientPayments = ClientPayment::latest()->paginate(10);
         return view('client-payment.index', compact('clientPayments'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function create()
     {
         $clients = Client::orderBy('name')->get();
         return view('client-payment.create', compact('clients'));
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(Request $request)
     {
         $request->validate([
@@ -94,35 +78,16 @@ class ClientPaymentController extends Controller
         $cash->save();
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\ClientPayment  $clientPayment
-     * @return \Illuminate\Http\Response
-     */
     public function show(ClientPayment $clientPayment)
     {
         return view('client-payment.show', compact('payment'));
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\ClientPayment  $clientPayment
-     * @return \Illuminate\Http\Response
-     */
     public function edit(ClientPayment $clientPayment)
     {
         return view('client-payment.edit', compact('clientPayment'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\ClientPayment  $clientPayment
-     * @return \Illuminate\Http\Response
-     */
     public function update(Request $request, ClientPayment $clientPayment)
     {
         $request->validate([
@@ -142,12 +107,6 @@ class ClientPaymentController extends Controller
         return redirect('/client-payment');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\ClientPayment  $clientPayment
-     * @return \Illuminate\Http\Response
-     */
     public function destroy(ClientPayment $clientPayment)
     {
         $clientPayment->client->total_due += $clientPayment->amount;

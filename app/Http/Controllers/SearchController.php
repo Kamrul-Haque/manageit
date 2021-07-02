@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\CashRegister;
+use App\Category;
 use App\Client;
 use App\ClientPayment;
 use App\Entry;
@@ -28,6 +29,7 @@ class SearchController extends Controller
             if ($date) $string = $date;
 
             $searchResults = (new Search())
+                ->registerModel(Category::class,'name')
                 ->registerModel(Product::class, 'name')
                 ->registerModel(Client::class, 'name','phone')
                 ->registerModel(Godown::class, 'name','location')
@@ -49,6 +51,7 @@ class SearchController extends Controller
             if ($date) $string = $date;
 
             $searchResults = (new Search())
+                ->registerModel(Category::class,'name')
                 ->registerModel(Product::class, 'name')
                 ->registerModel(Client::class, 'name','phone')
                 ->registerModel(Godown::class, 'name','location')

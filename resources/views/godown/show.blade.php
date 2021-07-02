@@ -30,14 +30,7 @@
 @endsection
 @section('content')
     <div class="container">
-        <div class="pb-0">
-            <div>
-                <a class="btn btn-light float-left" href=" {{route('godowns.index')}} ">Back</a>
-            </div>
-            <div class="text-center">
-                <h2>{{$godown->name}} - Stock</h2>
-            </div>
-        </div>
+        <h2>{{$godown->name}} - Stock</h2>
         <hr>
         <h4>Products</h4>
         <div class="card card-body bg-light">
@@ -102,11 +95,11 @@
         </div>
         <br>
         <hr>
-        <div class="form-group row">
-            <div class="col-md-2">
-                <a class="btn btn-primary float-left" href=" {{route('godowns.edit', $godown)}} ">Edit</a>
+        <div class="d-flex justify-content-between">
+            <div class="flex-column">
+                <a class="btn btn-light float-left" href=" {{route('godowns.index')}} ">Back</a>
             </div>
-            <div class="col-md-8">
+            <div class="flex-column">
                 <ul class="pagination justify-content-center" id="prodLinks">
                     {{ $products->links() }}
                 </ul>
@@ -114,34 +107,8 @@
                     {{ $entries->links() }}
                 </ul>
             </div>
-            <div class="col-md-2">
-                @auth('admin')
-                <button type="button" id="rightbutton" class="btn btn-danger float-right" data-toggle="modal" data-target="#deleteAllModal">Delete</button>
-                @endauth
-            </div>
-        </div>
-    </div>
-    <!-- The Modal -->
-    <div class="modal fade" id="deleteAllModal">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <p class="modal-title">Delete Confirmation</p>
-                    <button type="button" class="close" data-dismiss="modal">&times;</button>
-                </div>
-
-                <div class="modal-body text-danger font-weight-bold">
-                    <h4>Do you really want to delete the Godown? All related records will be deleted!</h4>
-                </div>
-
-                <div class="modal-footer">
-                    <form action="{{route('admin.godowns.destroy', $godown)}}" method="post">
-                        @csrf
-                        @method('DELETE')
-                        <button type="submit" class="btn btn-danger btn-sm">Confirm</button>
-                    </form>
-                    <button type="button" class="btn btn-primary btn-sm" data-dismiss="modal">Cancel</button>
-                </div>
+            <div class="flex-column">
+                <a class="btn btn-primary float-left" href=" {{route('godowns.edit', $godown)}} ">Edit</a>
             </div>
         </div>
     </div>

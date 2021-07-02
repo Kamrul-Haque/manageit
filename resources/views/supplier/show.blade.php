@@ -27,14 +27,7 @@
 @endsection
 @section('content')
     <div class="container-fluid pl-5 pr-5">
-        <div class="pb-0">
-            <div>
-                <a class="btn btn-light float-left" href=" {{route('suppliers.index')}} ">Back</a>
-            </div>
-            <div class="text-center" style="padding-left: 100px">
-                <h2>Supplier History</h2>
-            </div>
-        </div>
+        <h2>Supplier History</h2>
         <hr>
         <h5>Name: {{ $supplier->name }}</h5>
         <h5>Phone: {{ $supplier->phone }}</h5>
@@ -113,5 +106,7 @@
         <ul id="payLinks" class="pagination justify-content-center">
             {{ $payments->links() }}
         </ul>--}}
+        <hr>
+        <a class="btn btn-light float-left" href=" {{route('suppliers.index')}} ">Back</a>
     </div>
 @endsection

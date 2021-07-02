@@ -27,8 +27,7 @@
 @endsection
 @section('content')
     <div class="container">
-        <a class="btn btn-light" href=" {{route('admin.dashboard')}} ">Back</a>
-        <h2 style="float: right">Product Entries</h2>
+        <h2>Product Entries</h2>
         <hr>
         <div class="card card-body bg-light">
             <div class="table-responsive-lg">
@@ -79,6 +78,9 @@
             </div>
         </div>
         <hr>
-        <a href="{{ route('entries.create') }}" class="btn btn-success btn-block">Add New</a>
+        <div class="d-flex justify-content-between">
+            <a class="btn btn-light" href=" {{route('admin.dashboard')}} ">Back</a>
+            <a href="{{ route('entries.create') }}" class="btn btn-success btn-block">Add New</a>
+        </div>
     </div>
 @endsection

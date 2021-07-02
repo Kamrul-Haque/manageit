@@ -9,22 +9,12 @@ use Illuminate\Http\Request;
 
 class ProductTransferController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function index()
     {
         $productTransfers = ProductTransfer::latest()->paginate(10);
         return view('product-transfer.index', compact('productTransfers'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function create(Product $product, Godown $godown)
     {
         $godowns = Godown::all();
@@ -32,12 +22,6 @@ class ProductTransferController extends Controller
         return view('product-transfer.create', compact('product','godown','avlQuantity','godowns'));
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(Request $request)
     {
         $request->validate([
@@ -82,12 +66,6 @@ class ProductTransferController extends Controller
         return redirect('/product-transfers');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\ProductTransfer  $productTransfer
-     * @return \Illuminate\Http\Response
-     */
     public function destroy($productTransfer)
     {
         $productTransfer = ProductTransfer::find($productTransfer);

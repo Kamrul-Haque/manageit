@@ -11,33 +11,17 @@ use Auth;
 
 class AdminAccountsController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function index()
     {
         $admins = Admin::orderBy('name')->paginate(10);
         return view('admin.index')->with('admins', $admins);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function create()
     {
         return view('admin.create');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Http\Response
-     */
     public function store(Request $request)
     {
         $this->validate($request,[
@@ -65,25 +49,12 @@ class AdminAccountsController extends Controller
         return redirect('/admin/accounts');
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function edit($id)
     {
         $admin = Admin::find($id);
         return view('admin.edit')->with('admin',$admin);
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function update(Request $request, $id)
     {
         $this->validate($request,[
@@ -109,12 +80,6 @@ class AdminAccountsController extends Controller
         return redirect('/admin/accounts');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function destroy($id)
     {
         $admins = Admin::find($id);
@@ -124,13 +89,13 @@ class AdminAccountsController extends Controller
         return redirect('/admin/accounts');
     }
 
-    public function destroyAll()
+    /*public function destroyAll()
     {
         Admin::truncate();
 
         toastr()->error("All records Deleted");
         return redirect('/admin/accounts');
-    }
+    }*/
 
     public function passwordChangeForm()
     {

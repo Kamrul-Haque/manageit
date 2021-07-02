@@ -9,23 +9,12 @@ use Illuminate\Http\Request;
 
 class BankWithdrawController extends Controller
 {
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function create()
     {
         $bankAccounts = BankAccount::all();
         return view('bank-accounts.withdraw',compact('bankAccounts'));
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(Request $request)
     {
         $request->validate([
@@ -67,12 +56,6 @@ class BankWithdrawController extends Controller
         return redirect()->route('bank-account.show', $bankWithdraw->bankAccount);
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\BankWithdraw  $bankWithdraw
-     * @return \Illuminate\Http\Response
-     */
     public function destroy(BankWithdraw $bankWithdraw)
     {
         $bankWithdraw = BankWithdraw::find($bankWithdraw->id);

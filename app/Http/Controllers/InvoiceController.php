@@ -77,8 +77,6 @@ class InvoiceController extends Controller
         $invoice = new Invoice;
         $invoice->date = $request->input('date');
         $invoice->client_id = $request->input('client');
-        $invoice->labour_cost = $request->input('labour');
-        $invoice->transport_cost = $request->input('transport');
         $invoice->subtotal = $request->input('subtotal');
         $invoice->discount = $request->input('discount');
         $invoice->grand_total = $request->input('gtotal');
@@ -221,7 +219,7 @@ class InvoiceController extends Controller
         return redirect('/invoices');
     }
 
-    public function destroyAll()
+    /*public function destroyAll()
     {
         $invoices = Invoice::all();
         foreach ($invoices as $invoice)
@@ -236,7 +234,7 @@ class InvoiceController extends Controller
 
         toastr()->error('All Records Deleted');
         return redirect('/invoices');
-    }
+    }*/
 
     public function quotationPrint()
     {

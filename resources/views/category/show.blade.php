@@ -2,8 +2,7 @@
 
 @section('content')
     <div class="container-fluid px-5">
-        <a class="btn btn-light" href=" {{route('category.index')}} ">Back</a>
-        <h2 style="float: right">Products of {{ $category->name }}</h2>
+        <h2>Products of {{ $category->name }}</h2>
         <hr>
         @if($category->products->count())
             <div class="card card-body bg-light ">
@@ -20,7 +19,9 @@
         @endif
         <hr>
         <div class="d-flex justify-content-between">
-            <div class="flex-column"></div>
+            <div class="flex-column">
+                <a href="{{ route('admin.dashboard') }}" class="btn btn-light">Back</a>
+            </div>
             <div class="flex-column">
                 {{--{{ $category->products->links() }}--}}
             </div>

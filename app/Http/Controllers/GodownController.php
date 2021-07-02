@@ -11,33 +11,17 @@ use DB;
 
 class GodownController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function index()
     {
         $godowns = Godown::orderBy('name')->paginate(10);
         return view('godown.index', compact('godowns'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function create()
     {
         return view('godown.create');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(Request $request)
     {
         $this->validate($request, [
@@ -56,12 +40,6 @@ class GodownController extends Controller
         return redirect('/godowns');
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Godown  $godown
-     * @return \Illuminate\Http\Response
-     */
     public function show(Godown $godown)
     {
         $products = $godown->products()->orderBy('name')->paginate(10);
@@ -70,24 +48,11 @@ class GodownController extends Controller
         return view('godown.show', compact('products', 'godown', 'entries'));
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Godown  $godown
-     * @return \Illuminate\Http\Response
-     */
     public function edit(Godown $godown)
     {
         return view('godown.edit', compact('godown'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Godown  $godown
-     * @return \Illuminate\Http\Response
-     */
     public function update(Request $request, Godown $godown)
     {
         $this->validate($request,[
@@ -105,12 +70,6 @@ class GodownController extends Controller
         return redirect('/godowns');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Godown  $godown
-     * @return \Illuminate\Http\Response
-     */
     public function destroy(Godown $godown)
     {
         $godown->delete();
@@ -119,7 +78,7 @@ class GodownController extends Controller
         return redirect('/godowns');
     }
 
-    public function destroyAll()
+    /*public function destroyAll()
     {
         $godowns = Godown::all();
         foreach ($godowns as $godown)
@@ -132,7 +91,7 @@ class GodownController extends Controller
 
         toastr()->error('All Records Deleted!');
         return redirect('/godowns');
-    }
+    }*/
 
     public function restore($godown)
     {

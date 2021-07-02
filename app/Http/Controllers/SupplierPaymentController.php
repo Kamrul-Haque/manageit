@@ -10,34 +10,18 @@ use Illuminate\Http\Request;
 
 class SupplierPaymentController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function index()
     {
         $supplierPayments = SupplierPayment::latest()->paginate(10);
         return view('supplier-payment.index', compact('supplierPayments'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function create()
     {
         $suppliers = Supplier::orderBy('name')->get();
         return view('supplier-payment.create', compact('suppliers'));
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(Request $request)
     {
         $request->validate([
@@ -95,35 +79,16 @@ class SupplierPaymentController extends Controller
         $cash->save();
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\SupplierPayment  $supplierPayment
-     * @return \Illuminate\Http\Response
-     */
     public function show(SupplierPayment $supplierPayment)
     {;
         return view('supplier-payment.show', compact('supplierPayment'));
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\SupplierPayment  $supplierPayment
-     * @return \Illuminate\Http\Response
-     */
     public function edit(SupplierPayment $supplierPayment)
     {
         return view('supplier-payment.edit', compact('supplierPayment'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\SupplierPayment  $supplierPayment
-     * @return \Illuminate\Http\Response
-     */
     public function update(Request $request, SupplierPayment $supplierPayment)
     {
         $request->validate([
@@ -143,12 +108,6 @@ class SupplierPaymentController extends Controller
         return redirect('/supplier-payment');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\SupplierPayment  $supplierPayment
-     * @return \Illuminate\Http\Response
-     */
     public function destroy(SupplierPayment $supplierPayment)
     {
         $supplierPayment->supplier->total_due += $supplierPayment->amount;
