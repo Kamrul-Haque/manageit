@@ -118,14 +118,12 @@
                                 Suppliers
                             </a>
                         </li>
-                        @if(Auth::guard('admin')->check())
                         <li class="nav-item">
                             <a class="nav-link {{ Request::is('entries*') ? 'active' : '' }}" href="{{ route('entries.index') }}">
                                 <span data-feather="file-plus"></span>
                                 Entries
                             </a>
                         </li>
-                        @endif
                         <li class="nav-item">
                             <a class="nav-link {{ Request::is('sale*') ? 'active' : '' }}" href="{{ route('product.sales') }}">
                                 <span data-feather="dollar-sign"></span>
@@ -150,13 +148,13 @@
                                 Supplier Payments
                             </a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link {{ Request::is('cash-register*') ? 'active' : '' }}" href="{{ route('cash-register.index') }}">
-                                <span data-feather="inbox"></span>
-                                Cash Register
-                            </a>
-                        </li>
-                        @if(Auth::guard('admin')->check())
+                        @auth('admin')
+                            <li class="nav-item">
+                                <a class="nav-link {{ Request::is('cash-register*') ? 'active' : '' }}" href="{{ route('cash-register.index') }}">
+                                    <span data-feather="inbox"></span>
+                                    Cash Register
+                                </a>
+                            </li>
                             <li class="nav-item">
                                 <a class="nav-link {{ Request::is('admin/users*') ? 'active' : '' }}" href="{{ route('admin.users.index') }}">
                                     <span data-feather="users"></span>
@@ -175,7 +173,7 @@
                                     Trash
                                 </a>
                             </li>
-                        @endif
+                        @endauth
                     </ul>
                 </div>
             </nav>

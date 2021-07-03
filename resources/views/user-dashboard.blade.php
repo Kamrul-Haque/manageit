@@ -1,27 +1,95 @@
 @extends('layouts.app')
 @section('style')
     <style>
-        .btn{
-            line-height: 200px;
-            font-size: xx-large;
-            font-weight: bolder;
+        .card-body{
+            height: 150px;
         }
-        a.btn{
-            color: whitesmoke;
+        .display-4{
+            padding-top: 15px;
+            font-size: 40px;
+            font-weight: bold;
         }
-        a.btn-warning, a.btn-info, a.btn-primary{
-            color: black;
+        .bg-red{
+            background-color: darkred;
         }
-        a.btn-warning:hover{
-            background-color: gold;
+        .bg-green{
+            background-color: seagreen;
         }
-        a.btn-primary:hover, a.btn-info:hover{
-            color: black;
+        .bg-orange{
+            background-color: orange;
+        }
+        .bg-cyan{
+            background-color: cyan;
+        }
+        .bg-darkCyan{
+            background-color: #00c8c8;
         }
     </style>
 @endsection
 @section('content')
     <div class="container-fluid pl-5 pr-5 pt-5">
-
+        <br>
+        <div class="row">
+            <div class="col-md-6">
+                <div class="card">
+                    <div class="card-body bg-info shadow-lg">
+                        <div class="row">
+                            <h3 class="display-4 col-md-6">Sales:</h3>
+                            <span class="display-4 text-right col-md-6">{{ $salesToday }} &#2547;</span>
+                        </div>
+                    </div>
+                    <div class="card-footer bg-primary">
+                        <div class="text-center">
+                            <h4 class="text-light">Today</h4>
+                        </div>
+                    </div>
+                </div>
+                <br>
+                <br>
+                <div class="card">
+                    <div class="card-body bg-cyan shadow-lg">
+                        <div class="row">
+                            <h3 class="display-4 col-md-6">Clients:</h3>
+                            <span class="display-4 text-right col-md-6">{{ $newClients }}</span>
+                        </div>
+                    </div>
+                    <div class="card-footer bg-darkCyan">
+                        <div class="text-center">
+                            <h4 class="text-light">New Today</h4>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="card">
+                    <div class="card-body bg-secondary shadow-lg">
+                        <div class="row">
+                            <h3 class="display-4 col-md-6 text-light">Entries:</h3>
+                            <span class="display-4 text-right col-md-6 text-light">{{ $entriesToday }} &#2547;</span>
+                        </div>
+                    </div>
+                    <div class="card-footer bg-dark">
+                        <div class="text-center">
+                            <h4 class="text-light">Today</h4>
+                        </div>
+                    </div>
+                </div>
+                <br>
+                <br>
+                <div class="card">
+                    <div class="card-body bg-warning shadow-lg">
+                        <div class="row">
+                            <h3 class="display-4 col-md-6">Suppliers:</h3>
+                            <span class="display-4 text-right col-md-6">{{ $newSuppliers }}</span>
+                        </div>
+                    </div>
+                    <div class="card-footer bg-orange">
+                        <div class="text-center">
+                            <h4 class="text-light">New Today</h4>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 @endsection

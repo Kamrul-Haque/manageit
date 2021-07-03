@@ -6,7 +6,7 @@
             <th>Amount</th>
             <th>Payment Date</th>
             <th>Received By</th>
-            <th>OPERATIONS</th>
+            @auth('admin') <th>OPERATIONS</th> @endauth
         </tr>
     </thead>
     <tbody>
@@ -17,6 +17,7 @@
             <td> {{$payment->amount}} </td>
             <td> {{$payment->date_of_issue}} </td>
             <td> {{$payment->received_by}} </td>
+            @auth('admin')
             <td>
                 <div class="row justify-content-center">
                     @auth('admin')
@@ -44,6 +45,7 @@
                     @endauth
                 </div>
             </td>
+            @endauth
         </tr>
     @endforeach
     </tbody>

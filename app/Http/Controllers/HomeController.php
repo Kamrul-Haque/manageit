@@ -2,7 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\CashRegister;
+use App\Client;
+use App\Entry;
+use App\Invoice;
+use App\Supplier;
 use App\User;
+use Carbon\Carbon;
 use Hash;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -16,7 +22,11 @@ class HomeController extends Controller
 
     public function index()
     {
-        return view('user-dashboard');
+        $salesToday = Invoice::where('date',Carbon::today()->toDateString())->sum('grand_total');
+        $entriesToday = Entry::where('date',Carbon::today()->toDateString())->sum('buying_price');
+        $newClients = Client::whereDate('created_at',Carbon::today())->count();
+        $newSuppliers = Supplier::whereDate('created_at',Carbon::today())->count();
+        return view('user-dashboard', compact('salesToday','entriesToday','newClients','newSuppliers'));
     }
 
     public function passwordChangeForm()

@@ -43,10 +43,10 @@ class AdminController extends Controller
         $salesToday = Invoice::where('date',Carbon::today()->toDateString())->sum('grand_total');
         $entriesToday = Entry::where('date',Carbon::today()->toDateString())->sum('buying_price');
         $cashBalance = CashRegister::balance();
-        $bankBalance = BankAccount::sum('balance');
         $newClients = Client::whereDate('created_at',Carbon::today())->count();
         $newSuppliers = Supplier::whereDate('created_at',Carbon::today())->count();
-        return view('admin-dashboard', compact('salesToday','entriesToday','cashBalance','bankBalance','newClients','newSuppliers'));
+        /*$bankBalance = BankAccount::sum('balance');*/
+        return view('admin-dashboard', compact('salesToday','entriesToday','cashBalance','newClients','newSuppliers'));
     }
 
     //logout for admin

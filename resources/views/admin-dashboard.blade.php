@@ -47,21 +47,6 @@
             <br>
             <br>
             <div class="card">
-                <div class="card-body bg-success shadow-lg">
-                    <div class="row">
-                        <h3 class="display-4 col-md-6">Cash:</h3>
-                        <span class="display-4 text-right col-md-6">{{ $cashBalance }} &#2547;</span>
-                    </div>
-                </div>
-                <div class="card-footer bg-green">
-                    <div class="text-center">
-                        <h4 class="text-light">Balance</h4>
-                    </div>
-                </div>
-            </div>
-            <br>
-            <br>
-            <div class="card">
                 <div class="card-body bg-cyan shadow-lg">
                     <div class="row">
                         <h3 class="display-4 col-md-6">Clients:</h3>
@@ -92,21 +77,6 @@
             <br>
             <br>
             <div class="card">
-                <div class="card-body bg-danger shadow-lg">
-                    <div class="row">
-                        <h3 class="display-4 col-md-6 text-light">Bank:</h3>
-                        <span class="display-4 text-right col-md-6 text-light">{{ $bankBalance }} &#2547;</span>
-                    </div>
-                </div>
-                <div class="card-footer bg-red">
-                    <div class="text-center">
-                        <h4 class="text-light">Balance</h4>
-                    </div>
-                </div>
-            </div>
-            <br>
-            <br>
-            <div class="card">
                 <div class="card-body bg-warning shadow-lg">
                     <div class="row">
                         <h3 class="display-4 col-md-6">Suppliers:</h3>
@@ -119,6 +89,23 @@
                     </div>
                 </div>
             </div>
+        </div>
+        <div class="offset-md-3 col-md-6">
+            <br>
+            <div class="card">
+                <div class="card-body bg-success shadow-lg">
+                    <div class="row">
+                        <h3 class="display-4 col-md-6">Cash:</h3>
+                        <span class="display-4 text-right col-md-6">{{ $cashBalance }} &#2547;</span>
+                    </div>
+                </div>
+                <div class="card-footer bg-green">
+                    <div class="text-center">
+                        <h4 class="text-light">Balance</h4>
+                    </div>
+                </div>
+            </div>
+            <br>
         </div>
     </div>
 </div>
