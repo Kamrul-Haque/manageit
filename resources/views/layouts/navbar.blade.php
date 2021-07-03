@@ -20,7 +20,7 @@
 </style>
 <nav class="navbar navbar-expand-md navbar-dark shadow-md">
     <div class="container-fluid">
-        <a class="nav-link brand" href="{{ url('/') }}">{{ config('app.name') }}</a>
+        <img class="nav-link brand" src="{{ asset('images/logo.png') }}" alt="{{ config('app.name') }}">
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
             <span class="navbar-toggler-icon"></span>
         </button>
