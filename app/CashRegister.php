@@ -29,7 +29,7 @@ class CashRegister extends Model implements Searchable
 
     public function getSearchResult(): SearchResult
     {
-        $url = route('admin.cash-register.show', $this->id);
+        $url = route('cash-register.show', $this->id);
         // TODO: Implement getSearchResult() method.
         return new SearchResult($this,$this->title,$url);
     }

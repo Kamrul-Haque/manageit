@@ -37,7 +37,7 @@ class Entry extends Model implements Searchable
 
     public function getSearchResult(): SearchResult
     {
-        $url = route('admin.entries.show',$this->id);
+        $url = route('entries.show',$this->id);
         // TODO: Implement getSearchResult() method.
         return new SearchResult($this,$this->supplier->name,$url);
     }
