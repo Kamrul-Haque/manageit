@@ -2,8 +2,13 @@
 
 namespace App\Http\Controllers;
 
-use App\User;
 use Hash;
+use App\User;
+use App\Entry;
+use App\Client;
+use App\Invoice;
+use App\Supplier;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -16,7 +21,12 @@ class HomeController extends Controller
 
     public function index()
     {
-        return view('user-dashboard');
+        $salesToday = Invoice::where('date', Carbon::today()->toDateString())->sum('grand_total');
+        $entriesToday = Entry::where('date', Carbon::today()->toDateString())->sum('buying_price');
+        $newClients = Client::whereDate('created_at', Carbon::today())->count();
+        $newSuppliers = Supplier::whereDate('created_at', Carbon::today())->count();
+
+        return view('user-dashboard', compact('salesToday', 'entriesToday', 'newClients', 'newSuppliers'));
     }
 
     public function passwordChangeForm()
@@ -29,25 +39,19 @@ class HomeController extends Controller
         $id = $request->input('id');
 
         $user = User::find($id);
-        if (Hash::check($request->input('old'),$user->password))
-        {
-            if ($request->input('password') == $request->input('password_confirmation'))
-            {
+        if (Hash::check($request->input('old'), $user->password)) {
+            if ($request->input('password') == $request->input('password_confirmation')) {
                 $user->password = Hash::make($request->input('password'));
                 $user->save();
 
                 Auth::logout();
                 toastr()->success('Password Changed Successfully');
                 return redirect('/login');
-            }
-            else
-            {
+            } else {
                 toastr()->warning('New Passwords don\'t Match');
                 return back();
             }
-        }
-        else
-        {
+        } else {
             toastr()->error('Old Passwords don\'t Match');
             return back();
         }

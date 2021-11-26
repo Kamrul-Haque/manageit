@@ -20,7 +20,7 @@
     <div class="container m-auto">
         <h2>Edit Product</h2>
         <hr>
-        <form id="form" action="{{route('products.update', $product)}}" method="POST">
+        <form id="form" action="{{route('products.update', $product)}}" method="POST" enctype="multipart/form-data">
             @method('PUT')
             @csrf
             <div class="form-group">
