@@ -16,6 +16,7 @@
         font-weight: bold;
         color: deepskyblue;
         padding-right: 65px;
+        max-height: 50px;
     }
 </style>
 <nav class="navbar navbar-expand-md navbar-dark shadow-md">
