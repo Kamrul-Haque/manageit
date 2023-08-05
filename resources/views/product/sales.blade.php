@@ -19,7 +19,7 @@
         <h2>Products Sold</h2>
         <hr>
         <div class="accordion" id="accordionExample">
-            @foreach($products as $product)
+            @forelse($products as $product)
                 <div class="card">
                     <div class="card-header" id="heading{{$loop->index}}">
                         <h4 class="mb-0">
@@ -59,7 +59,11 @@
                         </div>
                     </div>
                 </div>
-            @endforeach
+            @empty
+                <div class="card card-body bg-light text-center">
+                    <p class="display-4">No Records Found!</p>
+                </div>
+            @endforelse
         </div>
     </div>
 @endsection

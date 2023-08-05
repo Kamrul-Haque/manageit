@@ -23,8 +23,8 @@
     @toastr_css
     <style>
         .content-wrapper{
-            padding-left: 230px;
-            padding-top: 60px;
+            margin-left: 250px;
+            margin-top: 60px;
             /* Space for fixed navbar */
         }
         .footer {
@@ -37,6 +37,26 @@
         }
         .table-responsive-lg{
             overflow-x: scroll;
+        }
+
+        .btn.btn-light{
+            background-color: lightgray !important;
+        }
+
+        .btn.btn-light:hover{
+            background-color: #e0e0e0 !important;
+        }
+
+        @media (max-width: 992px) {
+            .container {
+                width: 100% !important;
+            }
+        }
+
+        @media screen and (max-width: 576px){
+            .content-wrapper {
+                margin-left: 0 !important;
+            }
         }
 
         @media print {
@@ -127,6 +147,9 @@
             {
                 $('#search').attr('disabled',false);
             }
+        });
+        $('#side-bar-collapse').click(function (){
+            $('#sidebar').toggleClass('open');
         });
     });
 </script>

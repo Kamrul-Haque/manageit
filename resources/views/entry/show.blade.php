@@ -38,7 +38,7 @@
                         <th>NAME</th>
                         <th>QUANTITY</th>
                         <th>UNIT</th>
-                        <th>GODOWN</th>
+                        <th>Warehouse</th>
                         <th>ENTRY DATE</th>
                         <th>BOUGHT FROM</th>
                         <th>ENTRY BY</th>

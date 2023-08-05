@@ -21,6 +21,9 @@
 </style>
 <nav class="navbar navbar-expand-md navbar-dark shadow-md">
     <div class="container-fluid">
+        <button id="side-bar-collapse" class="navbar-toggler">
+            <span class="navbar-toggler-icon"></span>
+        </button>
         <img class="nav-link brand" src="{{ asset('images/logo.png') }}" alt="{{ config('app.name') }}">
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
             <span class="navbar-toggler-icon"></span>

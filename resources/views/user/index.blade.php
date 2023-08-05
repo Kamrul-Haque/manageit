@@ -16,7 +16,7 @@
 @endsection
 @section('content')
     <div class="container-fluid pl-5 pr-5 main-wrapper">
-        <h2>Employee Accounts</h2>
+        <h2>Employee</h2>
         <hr>
         @if($users->count())
         <div class="card card-body bg-light">

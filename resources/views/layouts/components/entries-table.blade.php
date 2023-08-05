@@ -5,7 +5,7 @@
             <th>Sl No.</th>
             <th>Name</th>
             <th>Quantity</th>
-            <th>Godown</th>
+            <th>Warehouse</th>
             <th>Date</th>
             <th>Bought From</th>
             <th>Entry by</th>

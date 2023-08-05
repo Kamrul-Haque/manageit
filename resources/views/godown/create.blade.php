@@ -18,12 +18,12 @@
 @endsection
 @section('content')
     <div class="container m-auto">
-        <h2>Create Godown</h2>
+        <h2>Create Warehouse</h2>
         <hr>
         <form action="{{route('godowns.store')}}" method="POST">
             @csrf
             <div class="form-group">
-                <label for="name">Godown Name</label>
+                <label for="name">Warehouse Name</label>
                 <input type="text" id="name" name="name" class="form-control @error('name') is-invalid @enderror" value="{{ old('name') }}" required>
 
                 @error('name')

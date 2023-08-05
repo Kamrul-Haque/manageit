@@ -42,7 +42,7 @@
                     <tr>
                         <th>#</th>
                         <th>Product</th>
-                        <th>Godown</th>
+                        <th>Warehouse</th>
                         <th>Quantity</th>
                         <th>Unit</th>
                         <th>Unit Price</th>

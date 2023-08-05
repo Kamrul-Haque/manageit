@@ -82,7 +82,7 @@
                 @enderror
             </div>
             <div class="form-group">
-                <label for="godown">Godown</label>
+                <label for="godown">Warehouse</label>
                 <select name="godown" id="godown" class="form-control @error('godown') is-invalid @enderror" required>
                     <option value="" selected disabled>Please Select...</option>
                     @foreach ($godowns as $godown)

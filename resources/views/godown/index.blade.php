@@ -15,12 +15,12 @@
 @endsection
 @section('content')
     <div class="container">
-        <h2>Godowns</h2>
+        <h2>Warehouses</h2>
         <hr>
         @if($godowns->count())
             <div class="card card-body bg-light">
                 @component('layouts.components.godown-table', ['godowns'=>$godowns])
-                    godowns
+                    warehouses
                 @endcomponent
             </div>
         @else

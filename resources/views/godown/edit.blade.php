@@ -18,13 +18,13 @@
 @endsection
 @section('content')
     <div class="container m-auto">
-        <h2>Edit Godown</h2>
+        <h2>Edit Warehouse</h2>
         <hr>
         <form action="{{route('godowns.update', $godown)}}" method="POST">
             @method('PUT')
             @csrf
             <div class="form-group">
-                <label for="name">Godown Name</label>
+                <label for="name">Warehouse Name</label>
                 <input type="text" id="name" name="name" class="form-control @error('name') is-invalid @enderror" value="{{ $godown->name }}" required>
 
                 @error('name')
