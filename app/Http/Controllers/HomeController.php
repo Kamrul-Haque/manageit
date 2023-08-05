@@ -26,7 +26,7 @@ class HomeController extends Controller
         $newClients = Client::whereDate('created_at', Carbon::today())->count();
         $newSuppliers = Supplier::whereDate('created_at', Carbon::today())->count();
 
-        return view('user-dashboard', compact('salesToday', 'entriesToday', 'newClients', 'newSuppliers'));
+        return view('dashboard', compact('salesToday', 'entriesToday', 'newClients', 'newSuppliers'));
     }
 
     public function passwordChangeForm()
